@@ -5,7 +5,8 @@ import flixel.FlxState;
 import flixel.FlxSprite;
 
 class SplashScreenState extends FlxState{
-	var _title = new FlxSprite;
+	var _title = new FlxSprite();
+
 	override public function create():Void{
 		super.create();
 		_title.loadGraphic("assets/images/SplashScreenGameTitle_Placeholder.png", true, 248, 150);
