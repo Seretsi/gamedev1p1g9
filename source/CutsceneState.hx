@@ -70,7 +70,7 @@ class CutsceneState extends FlxState
 			if(textTimer.elapsedTime > 1.5)
 			{
 				textTimer.active = false;
-				//enter first level
+				FlxG.switchState(new PlayState());
 			}
 		}
 		advance = FlxG.keys.anyPressed([SPACE]) || FlxG.mouse.justPressed;
