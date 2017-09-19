@@ -6,11 +6,11 @@ import flixel.FlxSprite;
 import flixel.FlxCamera;
 
 class Camera extends FlxCamera{
-	var _target:Player;
+	var _target:FlxSprite;
 	var _map:FlxTilemap;
 
-	override public function create():Void	{
-		super.create();
+	override public function new():Void	{
+		super();
 		//built in shake, fade, flash a colour (damage visuals), 
 		/*public function fade(Color:FlxColor = FlxColor.BLACK, Duration:Float = 1, FadeIn:Bool = false,
 								?OnComplete:Void->Void, Force:Bool = false):Void
@@ -31,10 +31,10 @@ class Camera extends FlxCamera{
 		
 	}
 
-	public function setTarget(tar:Player):Void {
+	public function setTarget(tar:FlxSprite):Void {
 		_target = tar;
-		follow(target, STYLE_TOPDOWN, null, 10);
-		setBounds(0, 0, map.width);
+		follow(target, TOPDOWN, 10);
+		setScrollBounds(0, _map.width, 0, _map.height);
 
 	}
 
