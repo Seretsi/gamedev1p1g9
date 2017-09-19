@@ -1,0 +1,4 @@
+export/
+export/.build
+export/windows/neko/bin/gamedev1p1g9.exe
+export/windows/neko/haxe/DefaultAssetLibrary.hx
