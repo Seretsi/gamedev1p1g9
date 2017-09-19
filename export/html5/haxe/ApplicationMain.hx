@@ -38,6 +38,10 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.TEXT);
 		
 		
+		urls.push ("assets/images/SplashScreenGameTitle_Placeholder.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("assets/music/music-goes-here.txt");
 		types.push (lime.Assets.AssetType.TEXT);
 		
@@ -155,7 +159,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "19",
+			build: "56",
 			company: "HaxeFlixel",
 			file: "gamedev1p1g9",
 			fps: 60,
@@ -173,13 +177,13 @@ class ApplicationMain {
 					display: 0,
 					fullscreen: false,
 					hardware: false,
-					height: 480,
+					height: 600,
 					parameters: "{}",
 					resizable: false,
 					stencilBuffer: true,
 					title: "gamedev1p1g9",
 					vsync: true,
-					width: 640,
+					width: 800,
 					x: null,
 					y: null
 				},
@@ -197,7 +201,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 640, 480, "000000");
+		openfl.Lib.embed (null, 800, 600, "000000");
 		#end
 		#else
 		create ();

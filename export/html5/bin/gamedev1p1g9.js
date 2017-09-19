@@ -28,6 +28,8 @@ ApplicationMain.create = function() {
 	types.push("TEXT");
 	urls.push("assets/images/images-go-here.txt");
 	types.push("TEXT");
+	urls.push("assets/images/SplashScreenGameTitle_Placeholder.png");
+	types.push("IMAGE");
 	urls.push("assets/music/music-goes-here.txt");
 	types.push("TEXT");
 	urls.push("assets/sounds/sounds-go-here.txt");
@@ -84,7 +86,7 @@ ApplicationMain.init = function() {
 	}
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "19", company : "HaxeFlixel", file : "gamedev1p1g9", fps : 60, name : "gamedev1p1g9", orientation : "", packageName : "com.example.myapp", version : "0.0.1", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 480, parameters : "{}", resizable : false, stencilBuffer : true, title : "gamedev1p1g9", vsync : true, width : 640, x : null, y : null}]};
+	ApplicationMain.config = { build : "56", company : "HaxeFlixel", file : "gamedev1p1g9", fps : 60, name : "gamedev1p1g9", orientation : "", packageName : "com.example.myapp", version : "0.0.1", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : false, stencilBuffer : true, title : "gamedev1p1g9", vsync : true, width : 800, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -2716,15 +2718,64 @@ CutsceneState.prototype = $extend(flixel_FlxState.prototype,{
 	create: function() {
 		flixel_FlxState.prototype.create.call(this);
 		this.textTimer = new flixel_util_FlxTimer();
-		this.textTimer.active = false;
-		this.displayText = "temp";
+		this.textTimer.active = true;
+		this.textTimer.start(2);
+		this.textTimer.loops = 1;
+		this.displayText = "I lost my job last month. I'm running out of money.";
 		this.textItem = new flixel_text_FlxText(0,220,640,this.displayText);
-		this.textItem.setFormat("Verdana",14,-1,"center");
+		this.textColor = -1;
+		this.textItem.setFormat("Verdana",14,this.textColor,"center");
 		this.add(this.textItem);
+		this.position = 0;
 	}
 	,update: function(elapsed) {
 		flixel_FlxState.prototype.update.call(this,elapsed);
+		if(this.position == 0) {
+			var transp = this.textTimer._timeCounter / 1.5;
+			if(transp > 1) {
+				this.textTimer.active = false;
+				transp = 1;
+			}
+			this.textItem.set_alpha(transp);
+			this.textItem.setFormat("Verdana",14,this.textColor,"center");
+		} else if(this.position < 3) {
+			if(this.textTimer._timeCounter < 1.5) {
+				var _this = this.textTimer;
+				var transp1 = (_this.time - _this._timeCounter - 2.0) / 1.5;
+				this.textItem.set_alpha(transp1);
+			} else if(this.textTimer._timeCounter >= 1.5) {
+				var transp2 = (this.textTimer._timeCounter - 1.5) / 1.5;
+				this.textItem.set_text(this.displayText);
+				this.textItem.set_alpha(transp2);
+				if(this.textTimer._timeCounter > 3.0) {
+					this.textTimer.active = false;
+					transp2 = 1;
+				}
+			}
+		} else {
+			var _this1 = this.textTimer;
+			var transp3 = (_this1.time - _this1._timeCounter - 0.5) / 1.5;
+			this.textItem.set_alpha(transp3);
+			if(this.textTimer._timeCounter > 1.5) {
+				this.textTimer.active = false;
+			}
+		}
 		this.advance = flixel_FlxG.keys.checkKeyArrayState([32],1) || flixel_FlxG.mouse._leftButton.current == 2;
+		if(this.advance == true) {
+			this.position++;
+			if(this.position == 1) {
+				this.displayText = "I'm at the store right now... but I don't have enough money to buy my [stuff].";
+				this.textTimer.active = true;
+				this.textTimer.start(3.5);
+			} else if(this.position == 2) {
+				this.displayText = "So it's time to go coupon hunting.";
+				this.textTimer.active = true;
+				this.textTimer.start(3.5);
+			} else if(this.position == 3) {
+				this.textTimer.active = true;
+				this.textTimer.start(2.0);
+			}
+		}
 	}
 	,__class__: CutsceneState
 });
@@ -2846,7 +2897,7 @@ var DefaultAssetLibrary = function() {
 	} else {
 		_this3.h[id] = value1;
 	}
-	id = "assets/music/music-goes-here.txt";
+	id = "assets/images/SplashScreenGameTitle_Placeholder.png";
 	var _this4 = this.path;
 	if(__map_reserved[id] != null) {
 		_this4.setReserved(id,id);
@@ -2854,13 +2905,13 @@ var DefaultAssetLibrary = function() {
 		_this4.h[id] = id;
 	}
 	var _this5 = this.type;
-	var value2 = "TEXT";
+	var value2 = "IMAGE";
 	if(__map_reserved[id] != null) {
 		_this5.setReserved(id,value2);
 	} else {
 		_this5.h[id] = value2;
 	}
-	id = "assets/sounds/sounds-go-here.txt";
+	id = "assets/music/music-goes-here.txt";
 	var _this6 = this.path;
 	if(__map_reserved[id] != null) {
 		_this6.setReserved(id,id);
@@ -2874,7 +2925,7 @@ var DefaultAssetLibrary = function() {
 	} else {
 		_this7.h[id] = value3;
 	}
-	id = "assets/writing/levelOneIntro.txt";
+	id = "assets/sounds/sounds-go-here.txt";
 	var _this8 = this.path;
 	if(__map_reserved[id] != null) {
 		_this8.setReserved(id,id);
@@ -2888,7 +2939,7 @@ var DefaultAssetLibrary = function() {
 	} else {
 		_this9.h[id] = value4;
 	}
-	id = "assets/writing/levelOneMain.txt";
+	id = "assets/writing/levelOneIntro.txt";
 	var _this10 = this.path;
 	if(__map_reserved[id] != null) {
 		_this10.setReserved(id,id);
@@ -2902,7 +2953,7 @@ var DefaultAssetLibrary = function() {
 	} else {
 		_this11.h[id] = value5;
 	}
-	id = "assets/writing/levelThreeIntro.txt";
+	id = "assets/writing/levelOneMain.txt";
 	var _this12 = this.path;
 	if(__map_reserved[id] != null) {
 		_this12.setReserved(id,id);
@@ -2916,7 +2967,7 @@ var DefaultAssetLibrary = function() {
 	} else {
 		_this13.h[id] = value6;
 	}
-	id = "assets/writing/levelTwoIntro.txt";
+	id = "assets/writing/levelThreeIntro.txt";
 	var _this14 = this.path;
 	if(__map_reserved[id] != null) {
 		_this14.setReserved(id,id);
@@ -2930,7 +2981,7 @@ var DefaultAssetLibrary = function() {
 	} else {
 		_this15.h[id] = value7;
 	}
-	id = "assets/writing/levelTwoMain.txt";
+	id = "assets/writing/levelTwoIntro.txt";
 	var _this16 = this.path;
 	if(__map_reserved[id] != null) {
 		_this16.setReserved(id,id);
@@ -2944,7 +2995,7 @@ var DefaultAssetLibrary = function() {
 	} else {
 		_this17.h[id] = value8;
 	}
-	id = "assets/writing/outro.txt";
+	id = "assets/writing/levelTwoMain.txt";
 	var _this18 = this.path;
 	if(__map_reserved[id] != null) {
 		_this18.setReserved(id,id);
@@ -2958,7 +3009,7 @@ var DefaultAssetLibrary = function() {
 	} else {
 		_this19.h[id] = value9;
 	}
-	id = "flixel/sounds/beep.ogg";
+	id = "assets/writing/outro.txt";
 	var _this20 = this.path;
 	if(__map_reserved[id] != null) {
 		_this20.setReserved(id,id);
@@ -2966,13 +3017,13 @@ var DefaultAssetLibrary = function() {
 		_this20.h[id] = id;
 	}
 	var _this21 = this.type;
-	var value10 = "SOUND";
+	var value10 = "TEXT";
 	if(__map_reserved[id] != null) {
 		_this21.setReserved(id,value10);
 	} else {
 		_this21.h[id] = value10;
 	}
-	id = "flixel/sounds/flixel.ogg";
+	id = "flixel/sounds/beep.ogg";
 	var _this22 = this.path;
 	if(__map_reserved[id] != null) {
 		_this22.setReserved(id,id);
@@ -2986,51 +3037,51 @@ var DefaultAssetLibrary = function() {
 	} else {
 		_this23.h[id] = value11;
 	}
-	id = "flixel/fonts/nokiafc22.ttf";
-	var _this24 = this.className;
-	var value12 = _$_$ASSET_$_$flixel_$fonts_$nokiafc22_$ttf;
+	id = "flixel/sounds/flixel.ogg";
+	var _this24 = this.path;
 	if(__map_reserved[id] != null) {
-		_this24.setReserved(id,value12);
+		_this24.setReserved(id,id);
 	} else {
-		_this24.h[id] = value12;
+		_this24.h[id] = id;
 	}
 	var _this25 = this.type;
-	var value13 = "FONT";
+	var value12 = "SOUND";
 	if(__map_reserved[id] != null) {
-		_this25.setReserved(id,value13);
+		_this25.setReserved(id,value12);
 	} else {
-		_this25.h[id] = value13;
+		_this25.h[id] = value12;
 	}
-	id = "flixel/fonts/monsterrat.ttf";
+	id = "flixel/fonts/nokiafc22.ttf";
 	var _this26 = this.className;
-	var value14 = _$_$ASSET_$_$flixel_$fonts_$monsterrat_$ttf;
+	var value13 = _$_$ASSET_$_$flixel_$fonts_$nokiafc22_$ttf;
 	if(__map_reserved[id] != null) {
-		_this26.setReserved(id,value14);
+		_this26.setReserved(id,value13);
 	} else {
-		_this26.h[id] = value14;
+		_this26.h[id] = value13;
 	}
 	var _this27 = this.type;
-	var value15 = "FONT";
+	var value14 = "FONT";
 	if(__map_reserved[id] != null) {
-		_this27.setReserved(id,value15);
+		_this27.setReserved(id,value14);
 	} else {
-		_this27.h[id] = value15;
+		_this27.h[id] = value14;
 	}
-	id = "flixel/images/ui/button.png";
-	var _this28 = this.path;
+	id = "flixel/fonts/monsterrat.ttf";
+	var _this28 = this.className;
+	var value15 = _$_$ASSET_$_$flixel_$fonts_$monsterrat_$ttf;
 	if(__map_reserved[id] != null) {
-		_this28.setReserved(id,id);
+		_this28.setReserved(id,value15);
 	} else {
-		_this28.h[id] = id;
+		_this28.h[id] = value15;
 	}
 	var _this29 = this.type;
-	var value16 = "IMAGE";
+	var value16 = "FONT";
 	if(__map_reserved[id] != null) {
 		_this29.setReserved(id,value16);
 	} else {
 		_this29.h[id] = value16;
 	}
-	id = "flixel/images/logo/default.png";
+	id = "flixel/images/ui/button.png";
 	var _this30 = this.path;
 	if(__map_reserved[id] != null) {
 		_this30.setReserved(id,id);
@@ -3044,6 +3095,20 @@ var DefaultAssetLibrary = function() {
 	} else {
 		_this31.h[id] = value17;
 	}
+	id = "flixel/images/logo/default.png";
+	var _this32 = this.path;
+	if(__map_reserved[id] != null) {
+		_this32.setReserved(id,id);
+	} else {
+		_this32.h[id] = id;
+	}
+	var _this33 = this.type;
+	var value18 = "IMAGE";
+	if(__map_reserved[id] != null) {
+		_this33.setReserved(id,value18);
+	} else {
+		_this33.h[id] = value18;
+	}
 	var assetsPrefix = null;
 	if(ApplicationMain.config != null && Object.prototype.hasOwnProperty.call(ApplicationMain.config,"assetsPrefix")) {
 		assetsPrefix = ApplicationMain.config.assetsPrefix;
@@ -3053,13 +3118,13 @@ var DefaultAssetLibrary = function() {
 		while(k.hasNext()) {
 			var k1 = k.next();
 			var this1 = this.path;
-			var _this32 = this.path;
-			var value18 = assetsPrefix + (__map_reserved[k1] != null ? _this32.getReserved(k1) : _this32.h[k1]);
-			var _this33 = this1;
+			var _this34 = this.path;
+			var value19 = assetsPrefix + (__map_reserved[k1] != null ? _this34.getReserved(k1) : _this34.h[k1]);
+			var _this35 = this1;
 			if(__map_reserved[k1] != null) {
-				_this33.setReserved(k1,value18);
+				_this35.setReserved(k1,value19);
 			} else {
-				_this33.h[k1] = value18;
+				_this35.h[k1] = value19;
 			}
 		}
 	}
@@ -3574,7 +3639,7 @@ NMEPreloader.prototype = $extend(openfl_display_Sprite.prototype,{
 		return 0;
 	}
 	,getHeight: function() {
-		var height = 480;
+		var height = 600;
 		if(height > 0) {
 			return height;
 		} else {
@@ -3582,7 +3647,7 @@ NMEPreloader.prototype = $extend(openfl_display_Sprite.prototype,{
 		}
 	}
 	,getWidth: function() {
-		var width = 640;
+		var width = 800;
 		if(width > 0) {
 			return width;
 		} else {
