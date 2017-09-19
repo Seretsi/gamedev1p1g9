@@ -11,11 +11,12 @@ class SplashScreenState extends FlxState{
 	var _title = new FlxSprite( 275, 150); 
 	//button needed to be initialized in the create() function to avoid issues
 	var _anyKeyButton:FlxButton;
+	var cam:Camera = new Camera();
 	
 	override public function create():Void{
 		super.create();
 		_title.loadGraphic("assets/images/SplashScreenGameTitle_Placeholder.png", true, 248, 150);
-		_anyKeyButton  = new FlxButton(10, 10, "press any key to start", clickPlay);
+		_anyKeyButton  = new FlxButton(10, 10, "press any key", clickPlay);
 		_anyKeyButton.x = 360;
 		_anyKeyButton.y = 325;
 
