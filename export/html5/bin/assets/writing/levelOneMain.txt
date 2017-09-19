@@ -1,0 +1,19 @@
+Start:
+Fade In, sound: seriousSound.wav on black screen
+Fade In, white text: THE [insert store type]
+:Fade Out, white text, sound
+
+Timed Monologue: //activates at set timer points
+
+
+Event Monologue, Coupon: //activates upon coupon pick-up
+25% off 
+
+Event Monologue, Crash: //activates upon crashing into a shopper
+Whoops
+She crashed into me!
+"Out of the way!"
+I hated that guy anyway
+His fault, not mine
+She probably liked anime
+"Gotta go fast!"
