@@ -37,6 +37,8 @@ class Camera extends FlxCamera{
 		super.update(elapsed);
 	}
 
+	public function useThisCamera(){ FlxG.camera = this; }
+	
 	public function setTarget(tar:FlxSprite):Void {
 		_target = tar;
 		follow(target, TOPDOWN, 10);

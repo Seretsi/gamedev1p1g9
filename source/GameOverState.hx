@@ -8,17 +8,17 @@ import flixel.FlxG;
 
 class GameOverState extends FlxState
 {
-	var gameOverString:String;
-	var gameOverTxt:FlxText;
-	var textColor:FlxColor;
-	var cam:Camera = new Camera();
+	var _gameOverString:String;
+	var _gameOverTxt:FlxText;
+	var _textColor:FlxColor;
+	var _cam:Camera = new Camera();
 
 	override public function create():Void
 	{
 		super.create();
-		cam.gameOver();
-		gameOverTxt.screenCenter();
-		add(gameOverTxt);
+		_cam.gameOver();
+		_gameOverTxt.screenCenter();
+		add(_gameOverTxt);
 		
 	}
 	
