@@ -1,5 +1,6 @@
 package;
 import flash.desktop.Clipboard;
+import flixel.FlxG;
 import flixel.text.FlxText;
 
 class Score extends FlxText
@@ -30,7 +31,7 @@ class Score extends FlxText
 	
 	public function collectCoupon(coup:Coupon):Void
 	{
-		score = score + coup.getValue;
+		score = score + coup.getValue();
 		couponsCollected++;
 		coup.destroy();
 	}
@@ -39,7 +40,7 @@ class Score extends FlxText
 	// finalScore is a separate variable so we can have a tallying thing on the result screen if we want.
 	public function tallyScore(finalTime:Int):Int
 	{
-		var finalScore = score + (intTime * timeValue);
+		var finalScore = score + (finalTime * timeValue);
 		return finalScore;
 	}
 }
