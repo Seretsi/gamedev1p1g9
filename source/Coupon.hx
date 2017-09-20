@@ -6,12 +6,14 @@ import flixel.FlxSprite;
 class Coupon extends FlxSprite
 {
 	var scoreValue : Int;
+	var collectSoundName : String;
 	
 	// TODO: Add graphic
 	public function new(value:Int = 50)
 	{
 		super();
 		scoreValue = value;
+		collectSoundName = "kaboom";
 	}
 	
 	public function getValue():Int
@@ -25,6 +27,8 @@ class Coupon extends FlxSprite
 		
 		// Check for collision.
 		// On Collision, call collection
+		
+		// QUESTION: Should we check for collision here or in a player class?
 	}
 	
 	// Function to be called when the coupon is collected.
@@ -35,4 +39,10 @@ class Coupon extends FlxSprite
 		
 		destroy();
 	}*/
+	
+	public override function destroy():Void
+	{
+		FlxG.sound.play(collectSoundName);
+		super.destroy();
+	}
 }
