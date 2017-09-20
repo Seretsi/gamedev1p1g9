@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flash.desktop.Clipboard;
 import flixel.text.FlxText;
 
@@ -23,17 +24,22 @@ class Timer extends FlxText
 		if (_stop)
 			return;
 		time = time - elapsed;
-		// TODO: Add code to update display text.
 		
 		if (time <= 0)
 		{
 			time = 0;
-			// TODO: Call whatever needs to be called when time runs out.
+			// TODO: Call whatever needs to be called when time runs out - probably just use FlxG to switch to game over state.
 		}
 	}
 	
+	// Returns the time rounded down to the second (drops milliseconds and stuff).
+	public function getTime():Int
+	{
+		return Std.int(time);
+	}
+	
 	// To be called whenever time is deducted as a penalty - subject to change depending on final decision.
-	public function deductTime(penalty:Float):Void
+	public function deductTime(penalty:Float = 15):Void
 	{
 		time -= penalty;
 	}
