@@ -12,7 +12,8 @@ class SplashScreenState extends FlxState{
 	//button needed to be initialized in the create() function to avoid issues
 	var _anyKeyButton:FlxButton;
 	var cam:Camera = new Camera();
-	
+	FlxG.camera = &cam;
+
 	override public function create():Void{
 		super.create();
 		_title.loadGraphic("assets/images/SplashScreenGameTitle_Placeholder.png", true, 248, 150);
@@ -30,6 +31,7 @@ class SplashScreenState extends FlxState{
 	}
 
 	function clickPlay():Void{
-		FlxG.switchState(new MenuState()); // we may not have a menu and just jump straight into the game
+		//FlxG.switchState(new MenuState()); // we may not have a menu and just jump straight into the game
+		cam.gameOverTransition();
 	}
 }
