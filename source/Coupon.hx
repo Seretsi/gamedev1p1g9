@@ -14,6 +14,11 @@ class Coupon extends FlxSprite
 		scoreValue = value;
 	}
 	
+	public function getValue():Int
+	{
+		return scoreValue;
+	}
+	
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
@@ -23,10 +28,11 @@ class Coupon extends FlxSprite
 	}
 	
 	// Function to be called when the coupon is collected.
-	function collection():Void
+	// I moved the stuff that would need to be in here to Score, so this can be deleted probably
+/*	function collection():Void
 	{
 		// TODO: Add to score.
 		
 		destroy();
-	}
+	}*/
 }
