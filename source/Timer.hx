@@ -1,4 +1,5 @@
 package;
+
 import flash.desktop.Clipboard;
 import flixel.text.FlxText;
 
@@ -7,6 +8,7 @@ class Timer extends FlxText
 {
 	// TODO: Add necessary variables and code for displaying timer text.
 	var time : Float;
+	var _stop : Bool = false;
 	
 	// Super constructor has a bunch of parameters, but idk if we need them at the moment.
 	public function new(startTime:Float)
@@ -18,6 +20,8 @@ class Timer extends FlxText
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		if (_stop)
+			return;
 		time = time - elapsed;
 		// TODO: Add code to update display text.
 		
@@ -32,5 +36,12 @@ class Timer extends FlxText
 	public function deductTime(penalty:Float):Void
 	{
 		time -= penalty;
+	}
+	
+	// For the end of the level - stops the timer and returns the player's ending time for the sake of score calculation.
+	public function finalTime():Float
+	{
+		_stop = true;
+		return time;
 	}
 }

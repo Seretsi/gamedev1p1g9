@@ -8,7 +8,7 @@ class Score extends FlxText
 	var score : Int;
 	
 	// Super constructor has a bunch of parameters, but idk if we need them at the moment.
-	public function new(startBalance:Int)
+	public function new(startBalance:Int=0)
 	{
 		super();
 		score = startBalance;
