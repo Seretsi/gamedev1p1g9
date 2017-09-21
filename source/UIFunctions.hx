@@ -14,9 +14,9 @@ class UIFunctions {
 	var timerText:String;
 	var monologueItem:FlxText;
 	var interactItem:FlxText;
-	var couponsItem:FlxText;
-	var scoreItem:FlxText;
-	var timerItem:FlxText;
+	var couponsItem:Coupon;
+	var scoreItem:Score;
+	var timerItem:Timer;
 	var monologueTimer:FlxTimer;
 	var interactTimer:FlxTimer;
 	var advance:Bool;
@@ -110,15 +110,15 @@ class UIFunctions {
 		return interactItem;
 	}
 	
-	public function getCouponsItem():FlxText {
+	public function getCouponsItem():Coupon {
 		return couponsItem;
 	}
 	
-	public function getScoreItem():FlxText {
+	public function getScoreItem():Score {
 		return scoreItem;
 	}
 	
-	public function getTimerItem():FlxText {
+	public function getTimerItem():Timer {
 		return timerItem;
 	}
 }
