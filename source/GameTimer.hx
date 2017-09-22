@@ -5,7 +5,7 @@ import flash.desktop.Clipboard;
 import flixel.text.FlxText;
 
 //Current idea is to have each State make its own timer, so that we can have different starting times for each stage.
-class GameTimer extends FlxText
+class GameTimer
 {
 	// TODO: Add necessary variables and code for displaying timer text.
 	var time : Float;
@@ -14,13 +14,11 @@ class GameTimer extends FlxText
 	// Super constructor has a bunch of parameters, but idk if we need them at the moment.
 	public function new(startTime:Float)
 	{
-		super();
 		time = startTime;
 	}
 	
-	override public function update(elapsed:Float):Void
+	public function updateTime(elapsed:Float):Void
 	{
-		super.update(elapsed);
 		if (_stop)
 			return;
 		time = time - elapsed;

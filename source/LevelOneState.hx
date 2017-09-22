@@ -9,17 +9,17 @@ class LevelOneState extends FlxState {
 	override public function create():Void {
 		super.create();
 		bgColor = FlxColor.WHITE;
-		ui = new UIFunctions();
+		ui = new UIFunctions(10);
 		add(ui.getMonologueItem());
 		add(ui.getInteractItem());
 		add(ui.getCouponsItem());
-		add(ui.getScoreItem());
+		add(ui.getScoresItem());
 		add(ui.getTimerItem());
 	}
 
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
-		ui.updateUI();
+		ui.updateUI(elapsed);
 		/*if (CRASH) {
 			ui.setInteractText(1);
 			ui.setMonologueText(1, LEVELNUM);
