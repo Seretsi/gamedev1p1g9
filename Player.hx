@@ -21,13 +21,11 @@ package;
 	 var _left:Bool = false;
 	 var WIDTH:Int = 300;
 	 var HEIGHT:Int = 700;
-	 var coupons:Int = 0;
 	 
      public function new(?X:Float=0, ?Y:Float=0)     {
          super(X, Y);
 		 //loadGraphic("assets/images/IMGNAME.png", true, WIDTH, HEIGHT);
 		 makeGraphic(16, 16, FlxColor.BLUE);
-		 //And like. some spriting stuff. i'll get to
 		 drag.x = drag.y = 1600;
      }
 	 
@@ -73,19 +71,10 @@ package;
 			} else if (_right){
 				mA = 0;
 			}
+			mA -= 20;
 			velocity.set(speed, 0);
 			velocity.rotate(FlxPoint.weak(0, 0), mA);
 		}
 		
 	}
-	/*
-	function gainCoupon():Void	{
-		coupons = coupons + 1;
-	}
-	
-	function canLeave(coupNum:Int):Bool	{
-		return coupons == coupNum;
-	}
-	*/
-	//Definitely lifted this from Marc's example code. Definitely will tailor to our stuff with sprites
  }
