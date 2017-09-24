@@ -41,9 +41,9 @@ class GameOverState extends FlxState
 	}
 
 	private function restartCurrentLevel(){
-
+		//research substates 
 	}
 	private function returnToSplashScreen(){
-
+		FlxG.switchState(new SplashScreenState());
 	}
 }
