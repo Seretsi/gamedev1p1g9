@@ -6,7 +6,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.FlxG;
 
-class CutsceneOneState extends FlxState {
+class CutsceneEndState extends FlxState {
 	var displayText:String;
 	var textItem:FlxText;
 	var textTimer:FlxTimer;
@@ -20,7 +20,7 @@ class CutsceneOneState extends FlxState {
 		textTimer.active = true;
 		textTimer.start(2);
 		textTimer.loops = 1;
-		displayText = "I lost my job last month. I'm running out of money.";
+		displayText = "I was so successful at coupon collecting that I'm now a billionaire.";
 		textItem = new FlxText(0, 220, 640, displayText);
 		textColor = FlxColor.WHITE;
 		textItem.setFormat("Verdana", 16, textColor, "center");
@@ -59,19 +59,20 @@ class CutsceneOneState extends FlxState {
 			textItem.alpha = transp;
 			if(textTimer.elapsedTime > 1.5) {
 				textTimer.active = false;
-				//FlxG.switchState(new PlayState());
+				textItem.alpha = 1;
+				textItem.text = " - Fin - ";
 			}
 		}
 		advance = FlxG.keys.anyPressed([SPACE]) || FlxG.mouse.justPressed;
 		if (advance == true) {
 			position++;
 			if (position == 1) {
-				displayText = "I'm at the store right now... but I don't have enough money to buy my [stuff].";
+				displayText = "However, I now find myself sufferring from a coupon-related injury that is both mysterious and fatal.";
 				textTimer.active = true;
 				textTimer.start(3.5);
 			}
 			else if (position == 2) {
-				displayText = "So it's time to go coupon hunting.";
+				displayText = "Farewell cruel world.";
 				textTimer.active = true;
 				textTimer.start(3.5);
 			}

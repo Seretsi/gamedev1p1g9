@@ -26,22 +26,22 @@ class UIFunctions {
 	var tempCoup:Coupon;
 	
 	public function new(t) { //NOTE: I am assuming 800 x 600 pixellation //NOTE: t is for TIME
-		monologueText = "[insert monologue here]";
+		monologueText = "My dog likes eating bones and stuff.";
 		monologueItem = new FlxText(0, 550, 800, monologueText);
 		textColor = FlxColor.WHITE;
-		monologueItem.setFormat("Verdana", 14, textColor, "center", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		monologueItem.setFormat("Verdana", 16, textColor, "center", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		interactText = "[insert interaction stuff here]";
 		interactItem = new FlxText(15, 10, 800, interactText);
-		interactItem.setFormat("Verdana", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		interactItem.setFormat("assets/fonts/seguibl.ttf", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		couponsText = "[stuff about coupons]";
-		couponsItem = new FlxText(350, 10, 800, couponsText);
-		couponsItem.setFormat("Verdana", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		couponsItem = new FlxText(400, 10, 800, couponsText);
+		couponsItem.setFormat("assets/fonts/seguibl.ttf", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoresText = "[stuff about score]";
-		scoresItem = new FlxText(500, 10, 800, scoresText);
-		scoresItem.setFormat("Verdana", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoresItem = new FlxText(550, 10, 800, scoresText);
+		scoresItem.setFormat("assets/fonts/seguibl.ttf", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timerText = "[stuff about time]";
-		timerItem = new FlxText(650, 10, 800, timerText);
-		timerItem.setFormat("Verdana", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		timerItem = new FlxText(700, 10, 800, timerText);
+		timerItem.setFormat("assets/fonts/seguibl.ttf", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scores = new Score(0);
 		timer = new GameTimer(t);
 		tempCoup = new Coupon();

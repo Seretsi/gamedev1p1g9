@@ -59,19 +59,19 @@ class CutsceneOneState extends FlxState {
 			textItem.alpha = transp;
 			if(textTimer.elapsedTime > 1.5) {
 				textTimer.active = false;
-				//FlxG.switchState(new PlayState());
+				FlxG.switchState(new LevelOneState());
 			}
 		}
 		advance = FlxG.keys.anyPressed([SPACE]) || FlxG.mouse.justPressed;
 		if (advance == true) {
 			position++;
 			if (position == 1) {
-				displayText = "I'm at the store right now... but I don't have enough money to buy my [stuff].";
+				displayText = "I'm at the store right now... but I don't have enough money to buy basic necessities.";
 				textTimer.active = true;
 				textTimer.start(3.5);
 			}
 			else if (position == 2) {
-				displayText = "So it's time to go coupon hunting.";
+				displayText = "Time to go coupon hunting.";
 				textTimer.active = true;
 				textTimer.start(3.5);
 			}

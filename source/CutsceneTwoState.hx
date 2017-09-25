@@ -6,7 +6,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.FlxG;
 
-class CutsceneOneState extends FlxState {
+class CutsceneTwoState extends FlxState {
 	var displayText:String;
 	var textItem:FlxText;
 	var textTimer:FlxTimer;
@@ -20,7 +20,7 @@ class CutsceneOneState extends FlxState {
 		textTimer.active = true;
 		textTimer.start(2);
 		textTimer.loops = 1;
-		displayText = "I lost my job last month. I'm running out of money.";
+		displayText = "[insert store name] is selling things at a 100% discount...";
 		textItem = new FlxText(0, 220, 640, displayText);
 		textColor = FlxColor.WHITE;
 		textItem.setFormat("Verdana", 16, textColor, "center");
@@ -59,19 +59,19 @@ class CutsceneOneState extends FlxState {
 			textItem.alpha = transp;
 			if(textTimer.elapsedTime > 1.5) {
 				textTimer.active = false;
-				//FlxG.switchState(new PlayState());
+				//FlxG.switchState(new LevelTwoState());
 			}
 		}
 		advance = FlxG.keys.anyPressed([SPACE]) || FlxG.mouse.justPressed;
 		if (advance == true) {
 			position++;
 			if (position == 1) {
-				displayText = "I'm at the store right now... but I don't have enough money to buy my [stuff].";
+				displayText = "...but that discount only applies if you have the right coupons.";
 				textTimer.active = true;
 				textTimer.start(3.5);
 			}
 			else if (position == 2) {
-				displayText = "So it's time to go coupon hunting.";
+				displayText = "You know what that means. It's coupon time.";
 				textTimer.active = true;
 				textTimer.start(3.5);
 			}

@@ -22,12 +22,12 @@ class LevelOneState extends FlxState {
 		ui.updateUI(elapsed);
 		/*if (CRASH) {
 			ui.setInteractText(1);
-			ui.setMonologueText(1, LEVELNUM);
+			ui.setMonologueText(1, 1);
 		}
 		if (COUPON)
 		{
 			ui.setInteractText(2);
-			ui.setMonologueText(2, LEVELNUM);
+			ui.setMonologueText(2, 1);
 		}
 		*/
 	}
