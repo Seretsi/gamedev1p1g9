@@ -24,16 +24,18 @@ class UIFunctions {
 	var advance:Bool;
 	var textColor:FlxColor;
 	var tempCoup:Coupon;
-	var endItem:FlxText;
-	var interactTimer:FlxTimer; //timer for interact text
-	var endResultsTimer:FlxTimer; //timer for end results
+	var endMoneyScoreItem:FlxText;
+	var endCoupScoreItem:FlxText;
+	var endTimeScoreItem:FlxText;
+	var endTotalScoreItem:FlxText;
+	var endScoreTimer:FlxTimer; //timer for end results
 	var monoCrash:Array<String>;
 	var monoCoup:Array<String>;
 	var crashIt:Int;
 	var coupIt:Int;
 	var monoType:Int;
 	
-	public function new(t, var lvl:Int) { //NOTE: I am assuming 800 x 600 pixellation //NOTE: t is for TIME
+	public function new(t, lvl) { //NOTE: I am assuming 800 x 600 pixellation //NOTE: t is for TIME
 		monologueText = "My dog likes eating bones and stuff.";
 		monologueItem = new FlxText(0, 550, 800, monologueText);
 		textColor = FlxColor.WHITE;
@@ -58,6 +60,13 @@ class UIFunctions {
 		crashIt = 0;
 		coupIt = 0;
 		initMono(lvl);
+		monologueTimer = new FlxTimer();
+		interactTimer = new FlxTimer();
+		endScoreTimer = new FlxTimer();
+		endMoneyScoreItem = new FlxText(400, 10, 800, "");
+		endCoupScoreItem = new FlxText(400, 10, 800, "");
+		endTimeScoreItem = new FlxText(400, 10, 800, "");
+		endTotalScoreItem = new FlxText(400, 10, 800, "");
 	}
 	
 	public function updateUI(elapsed):Void {
@@ -92,7 +101,6 @@ class UIFunctions {
 		monoType = type;
 		if (type == 1) { //indicates crash into shopper
 			monologueText = monoCrash[crashIt];
-			monologueItem.alpha = 1;
 			crashIt++;
 			if (crashIt < 7)
 			{
@@ -103,7 +111,6 @@ class UIFunctions {
 		}
 		else if (type == 2) { //indicates coupon pickup
 			monologueText = monoCoup[coupIt];
-			monologueItem.alpha = 1;
 			coupIt++;
 			if (coupIt < 7)
 			{
@@ -118,17 +125,15 @@ class UIFunctions {
 	//this should be updated upon a crash or coupon pickup
 		if (type == 1) { //indicates crash into shopper
 			interactText = "CRASHED INTO SHOPPER: -5 TIME";
-			interactItem.alpha = 1;
 			interactTimer.cancel();
 			interactTimer.start(2.5);
-			interactTimer.loops(1);
+			interactTimer.loops = 1;
 		}
 		else if (type == 2) { //indicates coupon pickup
 			interactText = "COUPON OBTAINED: +50 SCORE";
-			interactItem.alpha = 1;
 			interactTimer.cancel();
 			interactTimer.start(2.5);
-			interactTimer.loops(1);
+			interactTimer.loops = 1;
 		}
 	}
 	
@@ -137,6 +142,10 @@ class UIFunctions {
 			monologueTimer.cancel();
 			monologueItem.alpha = 0;
 		}
+		else if (monologueTimer.active == true)
+		{
+			monologueItem.alpha = 1;
+		}
 	}
 	
 	public function runInteract():Void {
@@ -144,15 +153,21 @@ class UIFunctions {
 			interactTimer.cancel();
 			interactItem.alpha = 0;
 		}
+		else if (interactTimer.active == true)
+		{
+			interactItem.alpha = 1;
+		}
 	}
 	
 	public function getEndResults():Void {
+	//all level assets alpha values should be set to 0 or assets destroyed at this point
 		monologueItem.alpha = 0;
 		interactItem.alpha = 0;
 		couponsItem.alpha = 0;
 		scoresItem.alpha = 0;
 		timerItem.alpha = 0;
-		var timeScore:Int = timer.finalTime() * 5;
+		endTimeScoreItem.text = timer.finalTime() * 5;
+		
 		var endScore:String = " -  250 from money spent\n" + " + " + scores.getScore() + " from coupons" + "\n" + " + " ;
 		endItem = new FlxText(0, 200, 800, endScore);
 	}
@@ -189,7 +204,9 @@ class UIFunctions {
 		return timerItem;
 	}
 	
-	private function initMono(var lvl:Int) {
+	private function initMono(lvl:Int) {
+		monoCrash = new Array();
+		monoCoup = new Array();
 		if (lvl == 1) {
 			monoCrash.push("Whoops");
 			monoCrash.push("They crashed into me!");
