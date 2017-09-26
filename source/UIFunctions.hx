@@ -24,6 +24,15 @@ class UIFunctions {
 	var advance:Bool;
 	var textColor:FlxColor;
 	var tempCoup:Coupon;
+	var endItem:FlxText;
+	var interactTimer:FlxTimer; //timer for interact text
+	var endResultsTimer:FlxTimer; //timer for end results
+	var levelOneMonoCrash:Array<String>;
+	var levelTwoMonoCrash:Array<String>;
+	var levelThreeMonoCrash:Array<String>;
+	var levelOneMonoCoup:Array<String>;
+	var levelTwoMonoCoup:Array<String>;
+	var levelThreeMonoCoup:Array<String>;
 	
 	public function new(t) { //NOTE: I am assuming 800 x 600 pixellation //NOTE: t is for TIME
 		monologueText = "My dog likes eating bones and stuff.";
@@ -49,16 +58,12 @@ class UIFunctions {
 	
 	public function updateUI(elapsed):Void {
 	//must be called every update and updates the display of score, coupon #, timer, monologue, and interact
+	//stop calling once the level has ended
 		textColor = FlxColor.WHITE;
-		//monologueItem.setFormat("Verdana", 14, textColor, "center", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		monologueItem.text = monologueText;
-		//interactItem.setFormat("Verdana", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		interactItem.text = interactText;
-		//couponsItem.setFormat("Verdana", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		couponsItem.text = couponsText;
-		//scoresItem.setFormat("Verdana", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoresItem.text = scoresText;
-		//timerItem.setFormat("Verdana", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timer.updateTime(elapsed);
 		timerText = "TIME: " + timer.getTime();
 		timerItem.text = timerText;
@@ -105,11 +110,22 @@ class UIFunctions {
 	public function setInteractText(type):Void {
 	//this should be updated upon a crash or coupon pickup
 		if (type == 1) { //indicates crash into shopper
-			interactText = "CRASHED INTO SHOPPER: -5 SCORE";
+			interactText = "CRASHED INTO SHOPPER: -5 TIME";
 		}
 		else if (type == 2) { //indicates coupon pickup
 			interactText = "COUPON OBTAINED: +50 SCORE";
 		}
+	}
+	
+	public function getEndResults():Void {
+		monologueItem.alpha = 0;
+		interactItem.alpha = 0;
+		couponsItem.alpha = 0;
+		scoresItem.alpha = 0;
+		timerItem.alpha = 0;
+		var timeScore:Int = timer.finalTime() * 5;
+		var endScore:String = " -  250 from money spent\n" + " + " + scores.getScore() + " from coupons" + "\n" + " + " ;
+		endItem = new FlxText(0, 200, 800, endScore);
 	}
 	
 	public function getMonologueItem():FlxText {

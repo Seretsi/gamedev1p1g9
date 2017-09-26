@@ -39,7 +39,7 @@ class GameTimer extends FlxText
 	}
 	
 	// To be called whenever time is deducted as a penalty - subject to change depending on final decision.
-	public function deductTime(penalty:Float = 15):Void
+	public function deductTime(penalty:Float = 5):Void
 	{
 		time -= penalty;
 	}
