@@ -2,11 +2,17 @@ package;
 
 import flixel.FlxState;
 import flixel.util.FlxColor;
+import flixel.FlxG;
 
 class LevelOneState extends FlxState {
 	var ui:UIFunctions;
-	
+	var player:Player = new Player();
+	var cam:Camera = new Camera();
+
 	override public function create():Void {
+		add(player);
+		cam.setTarget(player);
+		FlxG.camera = cam;
 		super.create();
 		bgColor = FlxColor.WHITE;
 		ui = new UIFunctions(10);
