@@ -40,6 +40,10 @@ class GameOverState extends FlxState
 		super.update(elapsed);
 	}
 
+	override public function destroy():Void
+	{
+		super.destroy(); 
+	}
 	private function restartCurrentLevel(){
 		//research substates 
 	}

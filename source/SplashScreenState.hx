@@ -29,6 +29,6 @@ class SplashScreenState extends FlxState{
 	}
 
 	function clickPlay():Void{
-		FlxG.switchState(new GameOverState()); // we may not have a menu and just jump straight into the game
+		FlxG.switchState(new LevelOneState()); // we may not have a menu and just jump straight into the game
 	}
 }
