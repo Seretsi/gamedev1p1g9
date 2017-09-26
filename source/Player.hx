@@ -35,13 +35,13 @@ import flixel.graphics.frames.FlxAtlasFrames;
         super(X, Y);
 		atlas = FlxAtlasFrames.fromTexturePackerJson("assets/images/player.png", "assets/data/player.json");
 		frames = atlas;
-		animation.addByPrefix("left", "l(");
-		animation.addByPrefix("up", "b(");
-		animation.addByPrefix("down", "f(");
-		animation.addByPrefix("l45", "l45");
-		animation.addByPrefix("r45", "r45");
-		animation.addByPrefix("b45", "b45");
-		setGraphicSize(50, 0);
+		animation.addByPrefix("left", "l(", 15);
+		animation.addByPrefix("up", "b(", 15);
+		animation.addByPrefix("down", "f(", 15);
+		animation.addByPrefix("l45", "l45", 15);
+		animation.addByPrefix("r45", "r45", 15);
+		animation.addByPrefix("b45", "b45", 15);
+		setGraphicSize(0, 150);
 		//offset.set(0, frameHeight);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
@@ -136,5 +136,6 @@ import flixel.graphics.frames.FlxAtlasFrames;
 		} else {
 			animation.stop();
 		}
+		setGraphicSize(0, 150);
 	}
  }
