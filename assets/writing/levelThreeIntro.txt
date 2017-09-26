@@ -1,4 +1,4 @@
 Black screen
-Fade In, white text: Rumor has it there's a store that has 200% off coupons. :Fade Out, white text
-Fade In, white text: Though I've been told it's a place where only the best coupon collectors around will prevail. :Fade Out, white text
+Fade In, white text: Rumor has it there's a store that has coupons that apply upwards of a 200% discount. :Fade Out, white text
+Fade In, white text: Though I've been told it's a place where solely the best coupon collectors will prevail. :Fade Out, white text
 Fade In, white text: Time to get my coupon on. :Fade Out, white text

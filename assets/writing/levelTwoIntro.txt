@@ -1,4 +1,4 @@
 Black screen
 Fade In, white text: There's supposedly a store selling things at a 100% discount... :Fade Out, white text
 Fade In, white text: ...but that discount only applies when you have the right coupons. :Fade Out, white text
-Fade In, white text: You know what that means. Coupon time. :Fade Out, white text
+Fade In, white text: You know what that means. It's coupon time. :Fade Out, white text

@@ -1,9 +1,3 @@
-Fade In, white text: I made so much money off those coupons that I'm a billionaire now. :Fade Out, white text
-Fade In, white text: And yet, even though I no longer need to collect coupons... :Fade Out, white text
-Fade In, white text: I find myself going to stores and collecting coupons just for the thrill of it. :Fade Out, white text
-Fade In, white text: Everyone keeps telling me I have a problem. :Fade Out, white text
-Fade In, white text: But that doesn't matter, I'm finally happy. :Fade Out, white text
-Fade In, sound: sadPiano.wav
-Fade In, white text: Sadly, [player name] died in a horrible coupon accident only a month later. :Fade Out, white text
-Fade In, white text: - Fin - :Fade Out, white text
-:Fade Out, sound
+Fade In, white text: I was so successful at coupon collecting that I'm now a billionaire. :Fade Out, white text
+Fade In, white text: However, I now find myself dying of a fatal, coupon-related injury. :Fade Out, white text
+Fade In, white text: Farewell cruel world. :Fade Out, white text

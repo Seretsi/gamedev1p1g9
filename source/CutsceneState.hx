@@ -6,7 +6,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.FlxG;
 
-class CutsceneState extends FlxState {
+class CutsceneOneState extends FlxState {
 	var displayText:String;
 	var textItem:FlxText;
 	var textTimer:FlxTimer;
@@ -23,7 +23,7 @@ class CutsceneState extends FlxState {
 		displayText = "I lost my job last month. I'm running out of money.";
 		textItem = new FlxText(0, 220, 640, displayText);
 		textColor = FlxColor.WHITE;
-		textItem.setFormat("Verdana", 14, textColor, "center");
+		textItem.setFormat("Verdana", 16, textColor, "center");
 		add(textItem);
 		position = 0;
 	}
@@ -37,7 +37,7 @@ class CutsceneState extends FlxState {
 				transp = 1;
 			}
 			textItem.alpha = transp;
-			textItem.setFormat("Verdana", 14, textColor, "center");
+			textItem.setFormat("Verdana", 16, textColor, "center");
 		}
 		else if(position < 3) {
 			if(textTimer.elapsedTime < 1.5) {
@@ -59,7 +59,7 @@ class CutsceneState extends FlxState {
 			textItem.alpha = transp;
 			if(textTimer.elapsedTime > 1.5) {
 				textTimer.active = false;
-				FlxG.switchState(new PlayState());
+				//FlxG.switchState(new PlayState());
 			}
 		}
 		advance = FlxG.keys.anyPressed([SPACE]) || FlxG.mouse.justPressed;
