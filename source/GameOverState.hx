@@ -15,8 +15,12 @@ class GameOverState extends FlxState
 	var _cam:Camera = new Camera();
 	var _exitKeyButton:FlxButton;
 	var _restartKeyButton:FlxButton;
+	var _levelNumber:Int;
 
-
+	override public function new(x:Int){
+		super();
+		this._levelNumber = x;
+	}
 	override public function create():Void
 	{
 		super.create();
@@ -25,7 +29,15 @@ class GameOverState extends FlxState
 		_exitKeyButton  = new FlxButton(10, 10, "EXIT", returnToSplashScreen);
 		_exitKeyButton.x = 300;
 		_exitKeyButton.y = 325;
-		_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartCurrentLevel);
+		switch(_levelNumber){
+			case 1: 
+				_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartLevelOne);
+			case 2: 
+				//_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartLevelTwo);
+			case 3: 
+				//_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartLevelThree);
+		}
+		//_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartCurrentLevel);
 		_restartKeyButton.x = 400;
 		_restartKeyButton.y = 325;
 
@@ -46,6 +58,15 @@ class GameOverState extends FlxState
 	}
 	private function restartCurrentLevel(){
 		//research substates 
+	}
+	private function restartLevelOne(){
+		FlxG.switchState(new LevelOneState());
+	}
+	private function restartTwoOne(){
+		//FlxG.switchState(new LevelTwoState());
+	}
+	private function restartThreeOne(){
+		//FlxG.switchState(new LevelThreeState());
 	}
 	private function returnToSplashScreen(){
 		FlxG.switchState(new SplashScreenState());
