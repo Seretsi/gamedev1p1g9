@@ -33,9 +33,9 @@ class GameOverState extends FlxState
 			case 1: 
 				_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartLevelOne);
 			case 2: 
-				//_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartLevelTwo);
+				_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartLevelTwo);
 			case 3: 
-				//_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartLevelThree);
+				_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartLevelThree);
 		}
 		//_restartKeyButton  = new FlxButton(10, 10, "RETRY", restartCurrentLevel);
 		_restartKeyButton.x = 400;
@@ -56,17 +56,14 @@ class GameOverState extends FlxState
 	{
 		super.destroy(); 
 	}
-	private function restartCurrentLevel(){
-		//research substates 
-	}
 	private function restartLevelOne(){
 		FlxG.switchState(new LevelOneState());
 	}
-	private function restartTwoOne(){
-		//FlxG.switchState(new LevelTwoState());
+	private function restartLevelTwo(){
+		FlxG.switchState(new LevelTwoState());
 	}
-	private function restartThreeOne(){
-		//FlxG.switchState(new LevelThreeState());
+	private function restartLevelThree(){
+		FlxG.switchState(new LevelThreeState());
 	}
 	private function returnToSplashScreen(){
 		FlxG.switchState(new SplashScreenState());
