@@ -42,6 +42,7 @@ class UIFunctions {
 		interactText = "[insert interaction stuff here]";
 		interactItem = new FlxText(15, 10, 800, interactText);
 		interactItem.setFormat("assets/fonts/seguibl.ttf", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		interactItem.alpha = 0;
 		couponsText = "[stuff about coupons]";
 		couponsItem = new FlxText(400, 10, 800, couponsText);
 		couponsItem.setFormat("assets/fonts/seguibl.ttf", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -91,18 +92,22 @@ class UIFunctions {
 		monoType = type;
 		if (type == 1) { //indicates crash into shopper
 			monologueText = monoCrash[crashIt];
+			monologueItem.alpha = 1;
 			crashIt++;
 			if (crashIt < 7)
 			{
+				monologueTimer.cancel();
 				monologueTimer.start(5.5);
 				monologueTimer.loops = 1;
 			}
 		}
 		else if (type == 2) { //indicates coupon pickup
 			monologueText = monoCoup[coupIt];
+			monologueItem.alpha = 1;
 			coupIt++;
 			if (coupIt < 7)
 			{
+				monologueTimer.cancel();
 				monologueTimer.start(5.5);
 				monologueTimer.loops = 1;
 			}
@@ -113,12 +118,14 @@ class UIFunctions {
 	//this should be updated upon a crash or coupon pickup
 		if (type == 1) { //indicates crash into shopper
 			interactText = "CRASHED INTO SHOPPER: -5 TIME";
+			interactItem.alpha = 1;
 			interactTimer.cancel();
 			interactTimer.start(2.5);
 			interactTimer.loops(1);
 		}
 		else if (type == 2) { //indicates coupon pickup
 			interactText = "COUPON OBTAINED: +50 SCORE";
+			interactItem.alpha = 1;
 			interactTimer.cancel();
 			interactTimer.start(2.5);
 			interactTimer.loops(1);
@@ -126,11 +133,17 @@ class UIFunctions {
 	}
 	
 	public function runMono():Void {
-		
+		if (monologueTimer.elapsedTime > 5) {
+			monologueTimer.cancel();
+			monologueItem.alpha = 0;
+		}
 	}
 	
 	public function runInteract():Void {
-		
+		if (interactTimer.elapsedTime > 2) {
+			interactTimer.cancel();
+			interactItem.alpha = 0;
+		}
 	}
 	
 	public function getEndResults():Void {
