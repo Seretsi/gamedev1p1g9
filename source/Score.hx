@@ -33,7 +33,7 @@ class Score extends FlxText
 	{
 		score = score + coup.getValue();
 		couponsCollected++;
-		coup.destroy();
+		coup.destroy;
 	}
 	
 	// To be called on level finish. Adds things like time bonus to final score
