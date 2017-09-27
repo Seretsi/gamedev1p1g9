@@ -59,7 +59,7 @@ class CutsceneThreeState extends FlxState {
 			textItem.alpha = transp;
 			if(textTimer.elapsedTime > 1.5) {
 				textTimer.active = false;
-				//FlxG.switchState(new LevelThreeState());
+				FlxG.switchState(new LevelThreeState());
 			}
 		}
 		advance = FlxG.keys.anyPressed([SPACE]) || FlxG.mouse.justPressed;
