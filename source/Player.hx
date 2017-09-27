@@ -1,37 +1,40 @@
 package;
 
+
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.system.FlxSound;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.math.FlxPoint;
+import flixel.FlxObject;
+ 
+import flixel.util.FlxColor;
 
 /**
  * @author Becca Sheridan & Etienne Morakotkarn
  */
- 
- import flixel.FlxG;
- import flixel.FlxSprite;
- import flixel.system.FlxAssets.FlxGraphicAsset;
- import flixel.math.FlxPoint;
- import flixel.FlxObject;
- 
- import flixel.util.FlxColor;
 
  class Player extends FlxSprite {
 	 
-	 var speed:Float = 200;
-	 var _up:Bool = false;
-	 var _down:Bool = false;
-	 var _right:Bool = false;
-	 var _left:Bool = false;
-	 var WIDTH:Int = 300;
-	 var HEIGHT:Int = 700;
+	var speed:Float = 200;
+	var _up:Bool = false;
+	var _down:Bool = false;
+	var _right:Bool = false;
+	var _left:Bool = false;
+	var WIDTH:Int = 300;
+	var HEIGHT:Int = 700;
 	 
-	 var atlas:FlxAtlasFrames;
-	 /*var frontBack:FlxAtlasFrames;
-	 var b45:FlxAtlasFrames;
-	 var l45:FlxAtlasFrames;
-	 var r45:FlxAtlasFrames;
-	 var left:FlxAtlasFrames;*/
-	 
-     public function new(?X:Float=0, ?Y:Float=0) {
+	var atlas:FlxAtlasFrames;
+//	var cartStart:FlxSound;
+	var cartLoop:FlxSound;
+	/*var frontBack:FlxAtlasFrames;
+	var b45:FlxAtlasFrames;
+	var l45:FlxAtlasFrames;
+	var r45:FlxAtlasFrames;
+	var left:FlxAtlasFrames;*/
+	
+    public function new(?X:Float=0, ?Y:Float=0) {
         super(X, Y);
 		atlas = FlxAtlasFrames.fromTexturePackerJson("assets/images/player.png", "assets/data/player.json");
 		frames = atlas;
@@ -44,23 +47,26 @@ import flixel.graphics.frames.FlxAtlasFrames;
 		setGraphicSize(0, 150);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
+		cartLoop = FlxG.sound.load("assets/sounds/cartStartNew.wav", 0.5, true);
+//		cartStart = FlxG.sound.load("assets/sounds/cartStart.wav", 0.5, false, false, false, cartLoop.play());
 		drag.x = drag.y = 1600;
-     }
-	 
-	 override public function update(elapsed:Float):Void {
+    }
+	
+	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 		poll();
 		movement();
 		animate();
+		cartLoop.play();
 		updateHitbox();
-	 }
-	 
-	 function poll():Void {
+	}
+	
+	function poll():Void {
 		_up = FlxG.keys.anyPressed([UP, W]);
 		_down = FlxG.keys.anyPressed([DOWN, S]);
 		_right = FlxG.keys.anyPressed([RIGHT, D]);
 		_left = FlxG.keys.anyPressed([LEFT, A]);
-	 }
+	}
 	
 	function movement():Void {
 		if (_up && _down){
@@ -132,12 +138,6 @@ import flixel.graphics.frames.FlxAtlasFrames;
 			animation.play("left");
 		} else {
 			animation.stop();
-		}
-		
-		if (_up || _down || _left || _right) {
-			FlxG.sound.play("cartLoop");
-		} else {
-			FlxG.sound.pause();
 		}
 		setGraphicSize(0, 150);
 	}

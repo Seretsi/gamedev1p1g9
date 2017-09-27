@@ -29,13 +29,7 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
-	<assets path="assets">
-		<sound path="sounds/cartLoop.wav" id="cartLoop"/>
-		<sound path="sounds/crash1.wav" id="crash1"/>
-		<sound path="sounds/crash2.wav" id="crash2"/>
-		<sound path="sounds/crash3.wav" id="crash3"/>
-	</assets>
-
+	<assets path="assets" />
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
