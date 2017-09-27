@@ -14,13 +14,14 @@ import flixel.FlxSprite;
 	 
 	var atlas:FlxAtlasFrames;
 	
-    public function new(?X:Float=0, ?Y:Float=0) {
+    public function new(?X:Float = 0, ?Y:Float = 0) {
+		super(X, Y);
 		atlas = FlxAtlasFrames.fromTexturePackerJson("assets/images/shopper2.png", "assets/data/shopper2.json");
 		animation.addByPrefix("up", "s2b", 15);
 		animation.addByPrefix("down", "s2f", 15);
     }
 	
 	override public function update(elapsed:Float):Void {
-		
+		super.update(elapsed);
 	}
  }

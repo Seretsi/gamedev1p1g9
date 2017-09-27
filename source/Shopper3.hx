@@ -15,14 +15,15 @@ import flixel.FlxObject;
 	 
 	var atlas:FlxAtlasFrames;
 	
-    public function new(?X:Float=0, ?Y:Float=0) {
-		atlas = FlxAtlasFrames.fromTexturePackerJson("assets/images/shopper2.png", "assets/data/shopper2.json");
+    public function new(?X:Float = 0, ?Y:Float = 0) {
+		super(X, Y);
+		atlas = FlxAtlasFrames.fromTexturePackerJson("assets/images/shopper3.png", "assets/data/shopper3.json");
 		animation.addByPrefix("left", "s3", 15);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
     }
 	
 	override public function update(elapsed:Float):Void {
-		
+		super.update(elapsed);
 	}
  }
