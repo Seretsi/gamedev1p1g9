@@ -39,6 +39,7 @@ class LevelThreeState extends FlxState {
 	var _npc4:Shopper3 = new Shopper3(125, 375);
 	var npc4path = new FlxPath();
 	var path4Points:Array<FlxPoint> = [new FlxPoint(125, 375), new FlxPoint(380, 375)];
+	var startPoint:FlxPoint = new FlxPoint(655, 400);
 
 
 	override public function create():Void {
@@ -122,22 +123,29 @@ class LevelThreeState extends FlxState {
 			transition.transition3();
 		}
 	}
-	
 	private function onNPC1Collision(player:Player, npc:Shopper1){
+		FlxObject.separate(player, npc);
+		player.setPosition(startPoint.x, startPoint.y);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
 	}
 	
 	private function onNPC2Collision(player:Player, npc:Shopper2){
+		FlxObject.separate(player, npc);
+		player.setPosition(startPoint.x, startPoint.y);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
+		cam.collisionResponse();
 	}
 	
 	private function onNPC3Collision(player:Player, npc:Shopper3){
+		FlxObject.separate(player, npc);
+		player.setPosition(startPoint.x, startPoint.y);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
+		cam.collisionResponse();
 	}
 }
