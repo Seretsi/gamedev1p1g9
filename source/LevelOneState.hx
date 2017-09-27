@@ -62,6 +62,7 @@ class LevelOneState extends FlxState {
 			add(ui.getEndCoupScoreItem());
 			add(ui.getEndTimeScoreItem());
 			add(ui.getEndTotalScoreItem());
+			LEVEL END = false;
 		}
 		*/
 	}

@@ -66,6 +66,7 @@ class UIFunctions {
 		monologueTimer = new FlxTimer();
 		interactTimer = new FlxTimer();
 		endScoreTimer = new FlxTimer();
+		endScoreTimer.active = false;
 	}
 	
 	public function updateUI(elapsed):Void {
@@ -81,6 +82,10 @@ class UIFunctions {
 		timerItem.text = timerText;
 		runMono();
 		runInteract();
+		if (endScoreTimer.active == true)
+		{
+			if
+		}
 	}
 	
 	public function setCoupons(c:Coupon):Void {
@@ -159,7 +164,9 @@ class UIFunctions {
 	public function getEndResults():Void {
 	//all level assets alpha values should be set to 0 or assets destroyed at this point
 		monologueItem.alpha = 0;
+		monologueTimer.active = false;
 		interactItem.alpha = 0;
+		interactTimer.active = false;
 		couponsItem.alpha = 0;
 		scoresItem.alpha = 0;
 		timerItem.alpha = 0;
@@ -167,12 +174,16 @@ class UIFunctions {
 		endHeaderScoreItem.setFormat("assets/fonts/seguibl.ttf", 16, textColor, "center");
 		endMoneyScoreItem = new FlxText(0, 200, 800, "");
 		endMoneyScoreItem.setFormat("assets/fonts/seguibl.ttf", 16, textColor, "center");
+		endMoneyScoreItem.alpha = 0;
 		endCoupScoreItem = new FlxText(0, 250, 800, "");
 		endCoupScoreItem.setFormat("assets/fonts/seguibl.ttf", 16, textColor, "center");
+		endCoupScoreItem.alpha = 0;
 		endTimeScoreItem = new FlxText(0, 300, 800, "");
 		endTimeScoreItem.setFormat("assets/fonts/seguibl.ttf", 16, textColor, "center");
+		endTimeScoreItem.alpha = 0;
 		endTotalScoreItem = new FlxText(0, 350, 800, "");
 		endTotalScoreItem.setFormat("assets/fonts/seguibl.ttf", 16, textColor, "center");
+		endTotalScoreItem.alpha = 0;
 		endHeaderScoreItem.text = "LEVEL " + lvl + " SCORE";
 		var ms:Int = -200;
 		if (lvl == 2)
@@ -186,10 +197,7 @@ class UIFunctions {
 		endCoupScoreItem.text = "Coupons Collected: " + cs + " points";
 		var total:Int = ms + ts + cs;
 		endTotalScoreItem.text = "Total Score: " + total + " points";
-	}
-	
-	public function updateEndResults(elapsed) {
-		
+		endScoreTimer.start(10.5);
 	}
 	
 	public function getMonologueItem():FlxText {
