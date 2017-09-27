@@ -45,7 +45,7 @@ class LevelTwoState extends FlxState {
 
 	override public function create():Void {
 		cam.setTarget(player);
-		FlxG.camera = cam;
+		//FlxG.camera = cam;
 		super.create();
 		bgColor = FlxColor.WHITE;
 		ui = new UIFunctions(90, 2);
@@ -133,6 +133,7 @@ class LevelTwoState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
+		collisionResponse();
 	}
 	
 	private function onNPC2Collision(player:Player, npc:Shopper2){
@@ -141,7 +142,7 @@ class LevelTwoState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
-		cam.collisionResponse();
+		collisionResponse();
 	}
 	
 	private function onNPC3Collision(player:Player, npc:Shopper3){
@@ -149,7 +150,14 @@ class LevelTwoState extends FlxState {
 		player.setPosition(startPoint.x, startPoint.y);
 		ui.reduceTimer();
 		ui.setInteractText(1);
-		ui.setMonologueText(1);	
-		cam.collisionResponse();
+		ui.setMonologueText(1);
+		collisionResponse();	
+	}
+
+	private function collisionResponse():Void {
+		var duration:Float = 0.1;
+		FlxG.camera.shake(0.01, 0.1);
+		FlxG.camera.flash(0xFFFF0000, duration); //flash the screen a red colour
+		//other colours include, black - 0xFF000000, white - 0xFFFFFFF
 	}
 }
