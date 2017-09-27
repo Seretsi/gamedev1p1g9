@@ -10,8 +10,10 @@ import flixel.FlxObject;
 import flixel.util.FlxCollision;
 import flixel.math.FlxPoint;
 import flixel.util.FlxPath;
+import flixel.group.FlxGroup;
 
 class LevelThreeState extends FlxState {
+	var hitboxes:FlxGroup;
 	var ui:UIFunctions;
 	var player:Player = new Player(655, 400);
 	var transition:TransparentPlate = new TransparentPlate(655, 450);
@@ -69,6 +71,17 @@ class LevelThreeState extends FlxState {
 		add(ui.getCouponsItem());
 		add(ui.getScoresItem());
 		add(ui.getTimerItem());
+
+		hitboxes = new FlxGroup();
+		hitboxes.add(new LevelHitbox(Std.int(2800/5), Std.int(1400/5), Std.int((3101 - 2800)/5), Std.int((2997-1400)/5)));
+		hitboxes.add(new LevelHitbox(Std.int(177*0.2), Std.int(2817*0.2), Std.int((2869 - 177)*0.2), Std.int((2993-2817)*0.2)));
+		hitboxes.add(new LevelHitbox(Std.int(1*0.2), Std.int(945*0.2), Std.int((177 - 1)*0.2), Std.int((2993-945)*0.2)));
+		hitboxes.add(new LevelHitbox(Std.int(681*0.2), Std.int(5*0.2), Std.int((3853 - 681)*0.2), Std.int((149-5)*0.2)));
+		hitboxes.add(new LevelHitbox(Std.int(3849*0.2), Std.int(5*0.2), Std.int((3993 - 3849)*0.2), Std.int((2181-5)*0.2)));
+		hitboxes.add(new LevelHitbox(Std.int(785*0.2), Std.int(925*0.2), Std.int((2065 - 785)*0.2), Std.int((1169-925)*0.2)));
+		
+		hitboxes.draw();
+		add(hitboxes);
 		
 		add(_coupon1);
 		add(_coupon2);
@@ -119,6 +132,7 @@ class LevelThreeState extends FlxState {
 		FlxG.collide(player, _npc2, onNPC2Collision);
 		FlxG.collide(player, _npc3, onNPC3Collision);
 		FlxG.collide(player, _npc4, onNPC3Collision);
+		FlxG.collide(player, hitboxes);
 	}
 
 	private function onCoupCollision(player:Player, coupon:Coupon){
