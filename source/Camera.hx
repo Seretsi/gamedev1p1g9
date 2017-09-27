@@ -63,5 +63,5 @@ class Camera extends FlxCamera{
 	fade(FlxColor.ORANGE, duration, false, endGame, false);
 	}
 
-	private function endGame():Void{ FlxG.switchState(new GameOverState()); }
+	private function endGame():Void{ FlxG.switchState(new GameOverState(1)); }
 }

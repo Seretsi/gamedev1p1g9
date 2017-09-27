@@ -12,8 +12,10 @@ class Coupon extends FlxSprite
 	public function new(value:Int = 50)
 	{
 		super();
+		loadGraphic("assets/art/coupon.png");
+		setGraphicSize(70, 0);
 		scoreValue = value;
-		collectSoundName = "kaboom";
+		//collectSoundName = "kaboom";
 	}
 	
 	public function getValue():Int
