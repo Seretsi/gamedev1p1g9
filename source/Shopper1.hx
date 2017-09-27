@@ -21,6 +21,7 @@ import flixel.FlxSprite;
 		animation.addByPrefix("up", "s1b", 15);
 		animation.addByPrefix("down", "s1f", 15);
 		setGraphicSize(0, 150);
+		updateHitbox();
     }
 	
 	override public function update(elapsed:Float):Void {

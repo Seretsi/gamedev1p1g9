@@ -23,7 +23,7 @@ import flixel.FlxObject;
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		setGraphicSize(0, 150);
-
+		updateHitbox();
     }
 	
 	override public function update(elapsed:Float):Void {

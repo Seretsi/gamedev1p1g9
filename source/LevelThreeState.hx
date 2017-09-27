@@ -75,6 +75,11 @@ class LevelThreeState extends FlxState {
 		add(_coupon4);
 		add(_coupon5);
 		
+		add(_npc1);
+		add(_npc2);
+		add(_npc3);
+		add(_npc4);
+		
 		_npc1.path = npc1path.add(655, 325).add(655, 175).add(655, 325).start(50, FlxPath.FORWARD);
 		for (i in 1...29){npc1path.add(655, 325).add(655, 175).add(655, 325).start(50, FlxPath.FORWARD); }
 		_npc2.path = npc2path.add(575, 460).add(575, 300).add(575, 460).start(50, FlxPath.FORWARD);
