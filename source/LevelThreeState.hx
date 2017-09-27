@@ -46,7 +46,7 @@ class LevelThreeState extends FlxState {
 		//cam.setTarget(player);
 		//FlxG.camera = cam;
 		super.create();
-		bgColor = FlxColor.WHITE;
+		bgColor = FlxColor.BLACK;
 		ui = new UIFunctions(90, 3);
 		add(transition);
 		_bg.loadGraphic("assets/art-refined/lv3.png", true, 4000, 3000);

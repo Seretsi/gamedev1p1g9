@@ -47,7 +47,7 @@ class LevelTwoState extends FlxState {
 		cam.setTarget(player);
 		//FlxG.camera = cam;
 		super.create();
-		bgColor = FlxColor.WHITE;
+		bgColor = FlxColor.BLACK;
 		ui = new UIFunctions(90, 2);
 		add(transition);
 		_bg.loadGraphic("assets/art-refined/lv2.png", true, 3200, 2400);
