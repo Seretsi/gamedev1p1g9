@@ -26,6 +26,13 @@ import flixel.FlxSprite;
     }
 	
 	override public function update(elapsed:Float):Void {
+		if (path != null) {
+			if (path.nodes[path.nodeIndex].y < getPosition().y) {
+				animation.play("down");
+			} else if (path.nodes[path.nodeIndex].y > getPosition().y) {
+				animation.play("up");
+			}
+		}
 		super.update(elapsed);
 	}
  }

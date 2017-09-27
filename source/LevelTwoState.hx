@@ -82,16 +82,16 @@ class LevelTwoState extends FlxState {
 		add(_npc4);
 		add(_npc5);
 		
-		_npc1.path = npc1path.add(450, 325).add(450, 175).add(450, 325).start(50, FlxPath.FORWARD);
-		for (i in 1...29){npc1path.add(450, 325).add(450, 175).add(450, 325).start(50, FlxPath.FORWARD); }
-		_npc2.path = npc2path.add(100, 460).add(600, 460).add(100, 460).start(50, FlxPath.FORWARD);
-		for (i in 1...29){npc2path.add(100, 460).add(600, 460).add(100, 460).start(50, FlxPath.FORWARD); }
-		_npc3.path = npc3path.add(100, 360).add(100, 160).add(100, 360).start(50, FlxPath.FORWARD);
-		for (i in 1...29){npc3path.add(100, 360).add(100, 160).add(100, 360).start(50, FlxPath.FORWARD); }
-		_npc4.path = npc4path.add(320, 240).add(460, 240).add(320, 240).start(50, FlxPath.FORWARD);
-		for (i in 1...29){npc4path.add(320, 240).add(460, 240).add(320, 240).start(50, FlxPath.FORWARD); }
-		_npc5.path = npc5path.add(600, 275).add(600, 50).add(600, 275).start(50, FlxPath.FORWARD);
-		for(i in 1...29){npc4path.add(600, 275).add(600, 50).add(600, 275).start(50, FlxPath.FORWARD);}	
+		_npc1.path = npc1path.add(450, 325).add(450, 175).add(450, 325).start(50, FlxPath.YOYO);
+		for (i in 1...29){npc1path.add(450, 325).add(450, 175).add(450, 325).start(50, FlxPath.YOYO); }
+		_npc2.path = npc2path.add(100, 460).add(600, 460).add(100, 460).start(50, FlxPath.YOYO);
+		for (i in 1...29){npc2path.add(100, 460).add(600, 460).add(100, 460).start(50, FlxPath.YOYO); }
+		_npc3.path = npc3path.add(100, 360).add(100, 160).add(100, 360).start(50, FlxPath.YOYO);
+		for (i in 1...29){npc3path.add(100, 360).add(100, 160).add(100, 360).start(50, FlxPath.YOYO); }
+		_npc4.path = npc4path.add(320, 240).add(460, 240).add(320, 240).start(50, FlxPath.YOYO);
+		for (i in 1...29){npc4path.add(320, 240).add(460, 240).add(320, 240).start(50, FlxPath.YOYO); }
+		_npc5.path = npc5path.add(600, 275).add(600, 50).add(600, 275).start(50, FlxPath.YOYO);
+		for(i in 1...29){npc4path.add(600, 275).add(600, 50).add(600, 275).start(50, FlxPath.YOYO);}	
 	}
 
 	override public function update(elapsed:Float):Void {
@@ -130,6 +130,7 @@ class LevelTwoState extends FlxState {
 	private function onNPC1Collision(player:Player, npc:Shopper1){
 		FlxObject.separate(player, npc);
 		player.setPosition(startPoint.x, startPoint.y);
+		
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	

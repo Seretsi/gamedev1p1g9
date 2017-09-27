@@ -19,14 +19,20 @@ import flixel.FlxObject;
 		super(X, Y);
 		atlas = FlxAtlasFrames.fromTexturePackerJson("assets/images/shopper3.png", "assets/data/shopper3.json");
 		frames = atlas;
-		animation.addByPrefix("left", "s3", 15);
-		setFacingFlip(FlxObject.LEFT, false, false);
-		setFacingFlip(FlxObject.RIGHT, true, false);
+		animation.addByPrefix("left", "1", 15);
+		animation.addByPrefix("right", "1", 15, true, true);
 		setGraphicSize(0, 150);
 		updateHitbox();
     }
 	
 	override public function update(elapsed:Float):Void {
+		if (path != null) {
+			if (path.nodes[path.nodeIndex].x < getPosition().x) {
+				animation.play("left");
+			} else if (path.nodes[path.nodeIndex].x > getPosition().x) {
+				animation.play("right");
+			}
+		}
 		super.update(elapsed);
 	}
  }
