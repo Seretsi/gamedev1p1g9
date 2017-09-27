@@ -20,9 +20,10 @@ class LevelOneState extends FlxState {
 		cam.setTarget(player);
 		FlxG.camera = cam;
 		super.create();
-		bgColor = FlxColor.BLACK;
-		var levelTime:Float = 10;
-		ui = new UIFunctions(10, 1);
+		bgColor = FlxColor.BLACK; //background color MUST be black
+		var levelTime:Float = 10; //set to desired time for level
+		var level:Int = 1; //set to level number 1, 2, or 3
+		ui = new UIFunctions(levelTime, level);
 		
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
 		_bg.setGraphicSize(800);
