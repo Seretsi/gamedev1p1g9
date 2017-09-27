@@ -29,7 +29,12 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
-	<assets path="assets" />
+	<assets path="assets">
+		<sound path="sounds/cartLoop.wav" id="cartLoop"/>
+		<sound path="sounds/crash1.wav" id="crash1"/>
+		<sound path="sounds/crash2.wav" id="crash2"/>
+		<sound path="sounds/crash3.wav" id="crash3"/>
+	</assets>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

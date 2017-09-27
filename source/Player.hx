@@ -97,9 +97,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 			mA -= 20;
 			velocity.set(speed, 0);
 			velocity.rotate(FlxPoint.weak(0, 0), mA);
-		} else {
-			animation.stop();
-		}	
+		}
 	}
 	
 	function animate():Void
@@ -134,6 +132,12 @@ import flixel.graphics.frames.FlxAtlasFrames;
 			animation.play("left");
 		} else {
 			animation.stop();
+		}
+		
+		if (_up || _down || _left || _right) {
+			FlxG.sound.play("cartLoop");
+		} else {
+			FlxG.sound.pause();
 		}
 		setGraphicSize(0, 150);
 	}
