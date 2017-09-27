@@ -22,6 +22,8 @@ import flixel.FlxObject;
 		animation.addByPrefix("left", "s3", 15);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
+		setGraphicSize(0, 150);
+
     }
 	
 	override public function update(elapsed:Float):Void {
