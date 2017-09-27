@@ -58,7 +58,6 @@ import flixel.FlxObject;
 		poll();
 		movement();
 		animate();
-		updateHitbox();
 	}
 	
 	function poll():Void {
@@ -147,6 +146,9 @@ import flixel.FlxObject;
 		} else {
 			animation.stop();
 		}
+		setGraphicSize(0, 150);
+		setGraphicSize(Std.int(width), 75);
+		updateHitbox();
 		setGraphicSize(0, 150);
 	}
  }

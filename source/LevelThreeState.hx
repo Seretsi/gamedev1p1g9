@@ -8,31 +8,47 @@ import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.FlxSprite;
 import flixel.FlxObject;
 import flixel.util.FlxCollision;
+import flixel.math.FlxPoint;
+import flixel.util.FlxPath;
 
 class LevelThreeState extends FlxState {
 	var ui:UIFunctions;
-	var player:Player = new Player(655,450);
+	var player:Player = new Player(655, 400);
+	var transition:TransparentPlate = new TransparentPlate(655, 450);
 	var _map:FlxOgmoLoader;
 	var _mWalls:FlxTilemap;
 	var cam:Camera = new Camera();
 	var _bg = new FlxSprite( 1, 1);
-	private var numCoups:Int = 3;
+	private var numCoups:Int = 5;
 	private var coupsHad:Int = 0;
 	private var canLeave:Bool = false; 
-	var _coupon1:Coupon = new Coupon(300, 105);
-	var _coupon2:Coupon = new Coupon(350, 500);
-	var _coupon3:Coupon = new Coupon(50, 450);
-	var _coupon4:Coupon = new Coupon(5, 25);
-	var _coupon5:Coupon = new Coupon(205, 25);
+	var _coupon1:Coupon = new Coupon(500, 105);
+	var _coupon2:Coupon = new Coupon(350, 425);
+	var _coupon3:Coupon = new Coupon(50, 455);
+	var _coupon4:Coupon = new Coupon(5, 5);
+	var _coupon5:Coupon = new Coupon(205, 50);
+	var _npc1:Shopper1 = new Shopper1(450, 325);
+	var npc1path = new FlxPath();
+	var path1Points:Array<FlxPoint> = [new FlxPoint(655, 325), new FlxPoint(655, 175)];
+	var _npc2:Shopper2 = new Shopper2(575, 460);
+	var npc2path = new FlxPath();
+	var path2Points:Array<FlxPoint> = [new FlxPoint(575, 460), new FlxPoint(575, 300)];
+	var _npc3:Shopper3 = new Shopper3(200, 175);
+	var npc3path = new FlxPath();
+	var path3Points:Array<FlxPoint> = [new FlxPoint(200, 175), new FlxPoint(575, 175)];
+	var _npc4:Shopper3 = new Shopper3(125, 375);
+	var npc4path = new FlxPath();
+	var path4Points:Array<FlxPoint> = [new FlxPoint(125, 375), new FlxPoint(380, 375)];
+
 
 	override public function create():Void {
 		cam.setTarget(player);
 		FlxG.camera = cam;
 		super.create();
 		bgColor = FlxColor.WHITE;
-		ui = new UIFunctions(10, 1);
-		
-		_bg.loadGraphic("assets/art-refined/lv3.png", true, 3200, 2400);
+		ui = new UIFunctions(90, 1);
+		add(transition);
+		_bg.loadGraphic("assets/art-refined/lv3.png", true, 4000, 3000);
 		_bg.setGraphicSize(800);
 		_bg.screenCenter();
 		add(_bg);
@@ -58,6 +74,15 @@ class LevelThreeState extends FlxState {
 		add(_coupon3);
 		add(_coupon4);
 		add(_coupon5);
+		
+		_npc1.path = npc1path.add(655, 325).add(655, 175).add(655, 325).start(50, FlxPath.FORWARD);
+		for (i in 1...29){npc1path.add(655, 325).add(655, 175).add(655, 325).start(50, FlxPath.FORWARD); }
+		_npc2.path = npc2path.add(575, 460).add(575, 300).add(575, 460).start(50, FlxPath.FORWARD);
+		for (i in 1...29){npc2path.add(575, 460).add(575, 300).add(575, 460).start(50, FlxPath.FORWARD); }
+		_npc3.path = npc3path.add(200, 175).add(575, 175).add(200, 175).start(50, FlxPath.FORWARD);
+		for (i in 1...29){npc3path.add(200, 175).add(575, 175).add(200, 175).start(50, FlxPath.FORWARD); }
+		_npc4.path = npc3path.add(125, 375).add(380, 375).add(125, 375).start(50, FlxPath.FORWARD);
+		for (i in 1...29){npc3path.add(125, 375).add(380, 375).add(125, 375).start(50, FlxPath.FORWARD); }
 	}
 
 	override public function update(elapsed:Float):Void {
@@ -68,11 +93,11 @@ class LevelThreeState extends FlxState {
 		FlxG.overlap(player, _coupon3, onCoupCollision);
 		FlxG.overlap(player, _coupon4, onCoupCollision);
 		FlxG.overlap(player, _coupon5, onCoupCollision);
-		/*if (CRASH) {
-			ui.setInteractText(1);
-			ui.setMonologueText(1, 1);
-		}
-		*/
+		FlxG.overlap(player, transition, onTransPlate);
+		FlxG.collide(player, _npc1, onNPC1Collision);
+		FlxG.collide(player, _npc2, onNPC2Collision);
+		FlxG.collide(player, _npc3, onNPC3Collision);
+		FlxG.collide(player, _npc4, onNPC3Collision);
 	}
 
 	private function onCoupCollision(player:Player, coupon:Coupon){
@@ -85,5 +110,29 @@ class LevelThreeState extends FlxState {
 			ui.setMonologueText(2);
 			if (coupsHad >= numCoups){canLeave = true;}
 		}
+	}
+	
+	private function onTransPlate(player:Player, transition:TransparentPlate){
+		if (canLeave){
+			transition.transition3();
+		}
+	}
+	
+	private function onNPC1Collision(player:Player, npc:Shopper1){
+		ui.reduceTimer();
+		ui.setInteractText(1);
+		ui.setMonologueText(1);	
+	}
+	
+	private function onNPC2Collision(player:Player, npc:Shopper2){
+		ui.reduceTimer();
+		ui.setInteractText(1);
+		ui.setMonologueText(1);	
+	}
+	
+	private function onNPC3Collision(player:Player, npc:Shopper3){
+		ui.reduceTimer();
+		ui.setInteractText(1);
+		ui.setMonologueText(1);	
 	}
 }
