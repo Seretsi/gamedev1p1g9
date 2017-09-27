@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxState;
+import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.tile.FlxTilemap;
@@ -11,6 +12,7 @@ import flixel.util.FlxCollision;
 
 class LevelOneState extends FlxState {
 	var ui:UIFunctions;
+	var hitboxes:FlxGroup;
 	var player:Player = new Player(100,175);
 	var transition:TransparentPlate = new TransparentPlate(100, 100);
 	var _map:FlxOgmoLoader;
@@ -29,23 +31,23 @@ class LevelOneState extends FlxState {
 		FlxG.camera = cam;
 		super.create();
 		bgColor = FlxColor.WHITE;
-		ui = new UIFunctions(10, 1);
+		ui = new UIFunctions(90, 1);
 		add(transition);
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
 		_bg.setGraphicSize(800);
 		_bg.screenCenter();
 		add(_bg);
-
-		_map = new FlxOgmoLoader("assets/images/levelOneCollisions.oel");
-		_mWalls = _map.loadTilemap("assets/art-refined/lv1.png", 100, 100, "walls");
+		
+		//_map = new FlxOgmoLoader("assets/images/levelOneCollisions.oel");
+		//_mWalls = _map.loadTilemap("assets/art-refined/lv1.png", 100, 100, "walls");
 		//_mWalls.loadMapFromGraphic("assets/art-refined/lv1.png", false, 100, null, /*TileGraphic:FlxTilemapGraphicAsset*/null,
 										 //100, 100, flixel.tile.FlxBaseTilemap.FlxTilemapAutoTiling.AUTO, 0, 1, 1);
-		_mWalls.setTileProperties(1, FlxObject.NONE);
+		//_mWalls.setTileProperties(1, FlxObject.NONE);
 		/*_mWalls.follow();
 		*/
-		_mWalls.setTileProperties(2, FlxObject.ANY);
+		//_mWalls.setTileProperties(2, FlxObject.ANY);
 		add(player);
-		add(_mWalls);
+		//add(_mWalls);
 		add(ui.getMonologueItem());
 		add(ui.getInteractItem());
 		add(ui.getCouponsItem());
@@ -55,6 +57,13 @@ class LevelOneState extends FlxState {
 		add(_coupon1);
 		add(_coupon2);
 		add(_coupon3);
+		
+		hitboxes = new FlxGroup();
+		hitboxes.add(new LevelHitbox(220, 0, 800 - 220, 110));
+		hitboxes.add(new LevelHitbox(186, 209, 319 - 186, 318 - 835));
+		hitboxes.add(new LevelHitbox(586, 189, 718 - 586, 298 - 189));
+		
+		add(hitboxes);
 	}
 
 	override public function update(elapsed:Float):Void {
