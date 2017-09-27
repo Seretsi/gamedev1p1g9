@@ -2,7 +2,6 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.util.FlxColor;
 
 class Coupon extends FlxSprite
 {
@@ -12,9 +11,8 @@ class Coupon extends FlxSprite
 	// TODO: Add graphic
 	public function new(?X:Float=0, ?Y:Float=0, value:Int = 50)	{
 		super(X,Y);
-		//loadGraphic("assets/art/coupon.png");
-		//setGraphicSize(70, 0);
-		makeGraphic(50, 50, FlxColor.BLUE);
+		loadGraphic("assets/art/coupon.png");
+		setGraphicSize(70, 0);
 		scoreValue = value;
 		//collectSoundName = "kaboom";
 	}
@@ -31,4 +29,3 @@ class Coupon extends FlxSprite
 		FlxG.sound.play(collectSoundName);
 		super.destroy();
 	}*/
-}

@@ -1,0 +1,4 @@
+Black screen
+Fade In, white text: I lost my job last month. I'm running out of money. :Fade Out, white text
+Fade In, white text: I'm at the store right now... but I don't have enough money to buy my [stuff]. :Fade Out, white text
+Fade In, white text: So it's time to go coupon hunting. :Fade Out, white text
