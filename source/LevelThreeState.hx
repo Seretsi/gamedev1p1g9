@@ -81,14 +81,14 @@ class LevelThreeState extends FlxState {
 		add(_npc3);
 		add(_npc4);
 		
-		_npc1.path = npc1path.add(655, 325).add(655, 175).add(655, 325).start(50, FlxPath.FORWARD);
-		for (i in 1...29){npc1path.add(655, 325).add(655, 175).add(655, 325).start(50, FlxPath.FORWARD); }
-		_npc2.path = npc2path.add(575, 460).add(575, 300).add(575, 460).start(50, FlxPath.FORWARD);
-		for (i in 1...29){npc2path.add(575, 460).add(575, 300).add(575, 460).start(50, FlxPath.FORWARD); }
-		_npc3.path = npc3path.add(200, 175).add(575, 175).add(200, 175).start(50, FlxPath.FORWARD);
-		for (i in 1...29){npc3path.add(200, 175).add(575, 175).add(200, 175).start(50, FlxPath.FORWARD); }
-		_npc4.path = npc3path.add(125, 375).add(380, 375).add(125, 375).start(50, FlxPath.FORWARD);
-		for (i in 1...29){npc3path.add(125, 375).add(380, 375).add(125, 375).start(50, FlxPath.FORWARD); }
+		_npc1.path = npc1path.add(655, 325).add(655, 175).add(655, 325).start(50, FlxPath.YOYO);
+		for (i in 1...29){npc1path.add(655, 325).add(655, 175).add(655, 325).start(50, FlxPath.YOYO); }
+		_npc2.path = npc2path.add(575, 460).add(575, 300).add(575, 460).start(50, FlxPath.YOYO);
+		for (i in 1...29){npc2path.add(575, 460).add(575, 300).add(575, 460).start(50, FlxPath.YOYO); }
+		_npc3.path = npc3path.add(200, 175).add(575, 175).add(200, 175).start(50, FlxPath.YOYO);
+		for (i in 1...29){npc3path.add(200, 175).add(575, 175).add(200, 175).start(50, FlxPath.YOYO); }
+		_npc4.path = npc3path.add(125, 375).add(380, 375).add(125, 375).start(50, FlxPath.YOYO);
+		for (i in 1...29){npc3path.add(125, 375).add(380, 375).add(125, 375).start(50, FlxPath.YOYO); }
 	}
 
 	override public function update(elapsed:Float):Void {

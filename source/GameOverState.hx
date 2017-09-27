@@ -19,6 +19,7 @@ class GameOverState extends FlxState
 
 	override public function new(x:Int){
 		super();
+		bgColor = FlxColor.BLACK;
 		this._levelNumber = x;
 	}
 	override public function create():Void
