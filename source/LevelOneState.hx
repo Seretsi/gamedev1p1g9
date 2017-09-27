@@ -35,7 +35,13 @@ class LevelOneState extends FlxState {
 	var path2Points:Array<FlxPoint> = [new FlxPoint(200, 460), new FlxPoint(600, 460)];
 
 	override public function create():Void {
+<<<<<<< HEAD
 		//cam.setTarget(player);
+=======
+		FlxG.debugger.drawDebug = true;
+		
+		cam.setTarget(player);
+>>>>>>> 64748bbfe8c9b06648ac61200a1822cb9a3012ce
 		FlxG.camera = cam;
 		super.create();
 		bgColor = FlxColor.WHITE;
@@ -51,6 +57,7 @@ class LevelOneState extends FlxState {
 		//_mWalls.setTileProperties(1, FlxObject.ANY);
 		add(_bg);
 		add(_npc1);
+		add(_npc2);
 		_map = new FlxOgmoLoader("assets/images/levelOneCollisions.oel");
 		_mWalls = _map.loadTilemap("assets/art-refined/lv1.png", 100, 100, "walls");
 		add(player);
@@ -87,8 +94,8 @@ class LevelOneState extends FlxState {
 		FlxG.overlap(player, _coupon2, onCoupCollision);
 		FlxG.overlap(player, _coupon3, onCoupCollision);
 		FlxG.overlap(player, transition, onTransPlate);
-		FlxG.collide(_npc1,player,  onNPC1Collision);
-		FlxG.collide(_npc2, player,  onNPC3Collision);
+		FlxG.overlap(player, _npc1, onNPC1Collision);
+		FlxG.overlap(player, _npc2, onNPC3Collision);
 		FlxG.collide(player, hitboxes);
 	}
 
@@ -111,12 +118,14 @@ class LevelOneState extends FlxState {
 	}
 	
 	private function onNPC1Collision(player:Player, npc:Shopper1){
+		FlxObject.separate(player, npc);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
 	}
 	
 	private function onNPC2Collision(player:Player, npc:Shopper2){
+		FlxObject.separate(player, npc);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
@@ -124,6 +133,7 @@ class LevelOneState extends FlxState {
 	}
 	
 	private function onNPC3Collision(player:Player, npc:Shopper3){
+		FlxObject.separate(player, npc);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	

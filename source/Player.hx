@@ -109,7 +109,7 @@ import flixel.FlxObject;
 	function animate():Void
 	{
 		if (_up || _left || _right || _down) {
-			FlxG.log.add("POTATOES");
+			//FlxG.log.add("POTATOES");
 			cartLoop.play();
 		} else {
 			cartLoop.stop();
@@ -147,8 +147,9 @@ import flixel.FlxObject;
 			animation.stop();
 		}
 		setGraphicSize(0, 150);
-		setGraphicSize(Std.int(width), 75);
+		scale.set(scale.x, 0.5*scale.y);
 		updateHitbox();
-		setGraphicSize(0, 150);
+		scale.set(scale.x, 2*scale.y);
+		height = 75;
 	}
  }
