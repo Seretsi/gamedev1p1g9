@@ -20,6 +20,7 @@ import flixel.FlxSprite;
 		frames = atlas;
 		animation.addByPrefix("up", "s2b", 15);
 		animation.addByPrefix("down", "s2f", 15);
+		setGraphicSize(0, 150);
     }
 	
 	override public function update(elapsed:Float):Void {

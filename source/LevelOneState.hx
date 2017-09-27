@@ -80,7 +80,6 @@ class LevelOneState extends FlxState {
 		FlxG.overlap(player, _coupon2, onCoupCollision);
 		FlxG.overlap(player, _coupon3, onCoupCollision);
 		FlxG.overlap(player, transition, onTransPlate);
-<<<<<<< HEAD
 		FlxG.collide(player, _npc1, onNPC1Collision);
 		FlxG.collide(player, _npc2, onNPC3Collision);
 		FlxG.collide(player, hitboxes);
