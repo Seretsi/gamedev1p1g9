@@ -21,7 +21,7 @@ class LevelOneState extends FlxState {
 	private var canLeave:Bool = false; 
 
 	override public function create():Void {
-		cam.setTarget(player);
+		//cam.setTarget(player);
 		FlxG.camera = cam;
 		super.create();
 		bgColor = FlxColor.WHITE;
@@ -32,15 +32,14 @@ class LevelOneState extends FlxState {
 		_bg.screenCenter();
 		add(_bg);
 		_map = new FlxOgmoLoader("assets/images/levelOneCollisions.oel");
-		_mWalls = _map.loadTilemap("assets/art-refined/lv1.png", 100, 100, "walls");
+		_mWalls = _map.loadTilemap("assets/images/maybe_transparent.png", 100, 100, "walls");
 		//_mWalls.loadMapFromGraphic("assets/art-refined/lv1.png", false, 100, null, /*TileGraphic:FlxTilemapGraphicAsset*/null,
 										 //100, 100, flixel.tile.FlxBaseTilemap.FlxTilemapAutoTiling.AUTO, 0, 1, 1);
-		_mWalls.setTileProperties(1, FlxObject.NONE);
-		/*_mWalls.follow();
-		*/
-		_mWalls.setTileProperties(2, FlxObject.ANY);
-		add(player);
+		//_mWalls.setTileProperties(1, FlxObject.NONE);
+		_mWalls.follow();
+		_mWalls.setTileProperties(0, FlxObject.ANY);
 		add(_mWalls);
+		add(player);
 		add(ui.getMonologueItem());
 		add(ui.getInteractItem());
 		add(ui.getCouponsItem());
@@ -51,6 +50,7 @@ class LevelOneState extends FlxState {
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 		ui.updateUI(elapsed);
+		FlxG.collide(_mWalls, player, null);
 		//FlxG.overlap(_player, _coupon1, onCoupCollision);
 		/*if (CRASH) {
 			ui.setInteractText(1);
