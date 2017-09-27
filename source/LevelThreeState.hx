@@ -117,6 +117,7 @@ class LevelThreeState extends FlxState {
 		FlxG.collide(player, _npc2, onNPC2Collision);
 		FlxG.collide(player, _npc3, onNPC3Collision);
 		FlxG.collide(player, _npc4, onNPC3Collision);
+		FlxG.collide(player, hitboxes);
 	}
 
 	private function onCoupCollision(player:Player, coupon:Coupon){
