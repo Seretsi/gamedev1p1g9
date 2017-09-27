@@ -16,6 +16,7 @@ import flixel.FlxSprite;
 	
     public function new(?X:Float=0, ?Y:Float=0) {
 		atlas = FlxAtlasFrames.fromTexturePackerJson("assets/images/shopper2.png", "assets/data/shopper2.json");
+		frames = atlas;
 		animation.addByPrefix("up", "s2b", 15);
 		animation.addByPrefix("down", "s2f", 15);
     }
