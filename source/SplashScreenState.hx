@@ -14,7 +14,7 @@ class SplashScreenState extends FlxState{
 
 	override public function create():Void{
 		super.create();
-		_title.loadGraphic("assets/images/SplashScreenGameTitle_Placeholder.png", true, 248, 150);
+		_title.loadGraphic("assets/images/SplashScreenGameTitle_Placeholder2.png", true, 248, 150);
 		_anyKeyButton  = new FlxButton(10, 10, "Click to play", clickPlay);
 		_anyKeyButton.x = 360;
 		_anyKeyButton.y = 325;

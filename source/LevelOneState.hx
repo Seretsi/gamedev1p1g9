@@ -134,7 +134,7 @@ class LevelOneState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
-		cam.collisionResponse();
+		collisionResponse();
 	}
 	
 	private function onNPC2Collision(player:Player, npc:Shopper2){
@@ -143,7 +143,7 @@ class LevelOneState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
-		cam.collisionResponse();
+		collisionResponse();
 	}
 	
 	private function onNPC3Collision(player:Player, npc:Shopper3){
@@ -152,7 +152,7 @@ class LevelOneState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
-		cam.collisionResponse();
+		collisionResponse();
 	}
 
 	private function collisionResponse():Void {
