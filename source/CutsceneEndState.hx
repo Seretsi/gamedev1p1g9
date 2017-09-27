@@ -60,7 +60,7 @@ class CutsceneEndState extends FlxState {
 			if(textTimer.elapsedTime > 1.5) {
 				textTimer.active = false;
 				textItem.alpha = 1;
-				textItem.text = " - Coupon - ";
+				textItem.text = " - Re-Coupon - ";
 			}
 		}
 		advance = FlxG.keys.anyPressed([SPACE]) || FlxG.mouse.justPressed;
