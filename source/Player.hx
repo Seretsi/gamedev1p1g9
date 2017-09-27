@@ -26,7 +26,7 @@ import flixel.FlxObject;
 	 
 	var atlas:FlxAtlasFrames;
 //	var cartStart:FlxSound;
-	var cartLoop:FlxSound;
+	public var cartLoop:FlxSound;
 	/*var frontBack:FlxAtlasFrames;
 	var b45:FlxAtlasFrames;
 	var l45:FlxAtlasFrames;
@@ -46,7 +46,7 @@ import flixel.FlxObject;
 		setGraphicSize(0, 150);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
-		cartLoop = FlxG.sound.load("sounds/crash1.wav");
+		cartLoop = FlxG.sound.load("assets/sounds/cartStartNew.wav", 1, true);
 //		cartStart = FlxG.sound.load("assets/sounds/cartStart.wav", 0.5, false, false, false, cartLoop.play());
 		drag.x = drag.y = 1600;
     }
@@ -67,10 +67,6 @@ import flixel.FlxObject;
 	}
 	
 	function movement():Void {
-		
-		if (_up) {
-			cartLoop.play();
-		}
 		
 		if (_up && _down){
 			_up = _down = false;
@@ -111,6 +107,13 @@ import flixel.FlxObject;
 	
 	function animate():Void
 	{
+		if (_up || _left || _right || _down) {
+			FlxG.log.add("POTATOES");
+			cartLoop.play();
+		} else {
+			cartLoop.stop();
+		}
+		
 		if (_right && !_down) {
 			facing = FlxObject.RIGHT;
 		} else if (_left || _up || _down || _right) {
