@@ -23,7 +23,10 @@ class LevelOneState extends FlxState {
 		bgColor = FlxColor.BLACK;
 		var levelTime:Float = 10;
 		ui = new UIFunctions(10, 1);
+<<<<<<< HEAD
 		temp = true;
+=======
+>>>>>>> fdf5e25ce659e316cc4d27f12bec6e6eedd2c064
 		
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
 		_bg.setGraphicSize(800);
