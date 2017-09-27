@@ -37,7 +37,7 @@ class UIFunctions {
 	var monoType:Int;
 	var lvl:Int;
 	
-	public function new(t, l) { //NOTE: I am assuming 800 x 600 pixellation //NOTE: t is for TIME
+	public function new(t:Float, l:Int) { //NOTE: I am assuming 800 x 600 pixellation //NOTE: t is for TIME
 		lvl = l;
 		monologueText = "My dog likes eating bones and stuff.";
 		monologueItem = new FlxText(0, 550, 800, monologueText);
