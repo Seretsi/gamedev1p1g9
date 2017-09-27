@@ -80,6 +80,9 @@ class UIFunctions {
 		timer.updateTime(elapsed);
 		timerText = "TIME: " + timer.getTime();
 		timerItem.text = timerText;
+		if (timer.getTime() <= 0) {
+			FlxG.switchState(new GameOverState(lvl));
+		}
 		runMono();
 		runInteract();
 		if (endScoreTimer.active == true)

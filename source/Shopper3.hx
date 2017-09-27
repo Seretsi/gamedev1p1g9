@@ -18,6 +18,7 @@ import flixel.FlxObject;
     public function new(?X:Float = 0, ?Y:Float = 0) {
 		super(X, Y);
 		atlas = FlxAtlasFrames.fromTexturePackerJson("assets/images/shopper3.png", "assets/data/shopper3.json");
+		frames = atlas;
 		animation.addByPrefix("left", "s3", 15);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
