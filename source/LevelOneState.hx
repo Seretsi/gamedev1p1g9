@@ -33,14 +33,15 @@ class LevelOneState extends FlxState {
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
 		_bg.setGraphicSize(800);
 		_bg.screenCenter();
-		add(_bg);
 		_map = new FlxOgmoLoader("assets/images/levelOneCollisions.oel");
-		_mWalls = _map.loadTilemap("assets/images/maybe_transparent.png", 100, 100, "walls");
+		_mWalls = _map.loadTilemap("assets/images/maybe_transparent.png", 10, 10, "walls");
 		//_mWalls.loadMapFromGraphic("assets/art-refined/lv1.png", false, 100, null, /*TileGraphic:FlxTilemapGraphicAsset*/null,
 										 //100, 100, flixel.tile.FlxBaseTilemap.FlxTilemapAutoTiling.AUTO, 0, 1, 1);
 		//_mWalls.setTileProperties(1, FlxObject.NONE);
 		_mWalls.follow();
-		_mWalls.setTileProperties(0, FlxObject.ANY);
+		_mWalls.setTileProperties(1, FlxObject.ANY);
+	
+		add(_bg);
 		add(_mWalls);
 		add(player);
 		add(ui.getMonologueItem());
@@ -58,6 +59,7 @@ class LevelOneState extends FlxState {
 		super.update(elapsed);
 		ui.updateUI(elapsed);
 		FlxG.collide(_mWalls, player, null);
+		if player.
 		//FlxG.overlap(_player, _coupon1, onCoupCollision);
 
 		FlxG.overlap(player, _coupon1, onCoupCollision);

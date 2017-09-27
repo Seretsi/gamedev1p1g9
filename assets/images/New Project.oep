@@ -5,8 +5,8 @@
   <BackgroundColor A="255" R="255" G="15" B="255" />
   <GridColor A="255" R="0" G="0" B="0" />
   <LevelDefaultSize>
-    <Width>3200</Width>
-    <Height>2400</Height>
+    <Width>800</Width>
+    <Height>600</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
     <Width>3200</Width>
@@ -29,8 +29,8 @@
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>walls</Name>
       <Grid>
-        <Width>100</Width>
-        <Height>100</Height>
+        <Width>10</Width>
+        <Height>10</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -44,8 +44,8 @@
       <Name>walls</Name>
       <FilePath>maybe_transparent.png</FilePath>
       <TileSize>
-        <Width>100</Width>
-        <Height>100</Height>
+        <Width>10</Width>
+        <Height>10</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
