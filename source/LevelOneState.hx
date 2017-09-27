@@ -136,11 +136,7 @@ class LevelOneState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
-<<<<<<< HEAD
 		collisionResponse();
-=======
-		cam.collisionResponse();
->>>>>>> refs/remotes/origin/master
 	}
 	
 	private function onNPC2Collision(player:Player, npc:Shopper2){
