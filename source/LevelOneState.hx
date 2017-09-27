@@ -35,13 +35,8 @@ class LevelOneState extends FlxState {
 	var path2Points:Array<FlxPoint> = [new FlxPoint(200, 460), new FlxPoint(600, 460)];
 
 	override public function create():Void {
-<<<<<<< HEAD
 		//cam.setTarget(player);
-=======
 		FlxG.debugger.drawDebug = true;
-		
-		cam.setTarget(player);
->>>>>>> 64748bbfe8c9b06648ac61200a1822cb9a3012ce
 		FlxG.camera = cam;
 		super.create();
 		bgColor = FlxColor.WHITE;
