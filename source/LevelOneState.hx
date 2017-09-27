@@ -25,7 +25,7 @@ class LevelOneState extends FlxState {
 		FlxG.camera = cam;
 		super.create();
 		bgColor = FlxColor.WHITE;
-		ui = new UIFunctions(10);
+		ui = new UIFunctions(10, 1);
 		
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
 		_bg.setGraphicSize(800);
