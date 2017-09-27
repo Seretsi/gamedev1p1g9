@@ -95,7 +95,7 @@ class LevelThreeState extends FlxState {
 		super.update(elapsed);
 		ui.updateUI(elapsed);
 		
-		var x:Int, y:Int;
+		var x:Float, y:Float;
 		x = player.getPosition().x; 
 		y = player.getPosition().y;
 		if (x < 0) {

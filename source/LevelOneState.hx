@@ -42,7 +42,7 @@ class LevelOneState extends FlxState {
 		//cam.setTarget(player);
 		
 		super.create();
-		bgColor = FlxColor.WHITE;
+		bgColor = FlxColor.BLACK;
 		ui = new UIFunctions(90, 1);
 		add(transition);
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
@@ -87,6 +87,7 @@ class LevelOneState extends FlxState {
 		super.update(elapsed);
 		ui.updateUI(elapsed);
 		
+		var x:Float, y:Float;
 		x = player.getPosition().x; 
 		y = player.getPosition().y;
 		if (x < 0) {
@@ -135,6 +136,7 @@ class LevelOneState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
+		cam.collisionResponse();
 	}
 	
 	private function onNPC2Collision(player:Player, npc:Shopper2){
