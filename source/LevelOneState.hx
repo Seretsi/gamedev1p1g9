@@ -33,11 +33,14 @@ class LevelOneState extends FlxState {
 	var _npc2:Shopper3 = new Shopper3(200, 460);
 	var npc2path = new FlxPath();
 	var path2Points:Array<FlxPoint> = [new FlxPoint(200, 460), new FlxPoint(600, 460)];
+	var startPoint:FlxPoint = new FlxPoint(100, 175);
 
 	override public function create():Void {
 		//cam.setTarget(player);
 		FlxG.debugger.drawDebug = true;
 		//FlxG.camera = cam;
+		//cam.setTarget(player);
+		
 		super.create();
 		bgColor = FlxColor.WHITE;
 		ui = new UIFunctions(90, 1);
@@ -114,6 +117,7 @@ class LevelOneState extends FlxState {
 	
 	private function onNPC1Collision(player:Player, npc:Shopper1){
 		FlxObject.separate(player, npc);
+		player.setPosition(startPoint.x, startPoint.y);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
@@ -121,6 +125,7 @@ class LevelOneState extends FlxState {
 	
 	private function onNPC2Collision(player:Player, npc:Shopper2){
 		FlxObject.separate(player, npc);
+		player.setPosition(startPoint.x, startPoint.y);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
@@ -129,6 +134,7 @@ class LevelOneState extends FlxState {
 	
 	private function onNPC3Collision(player:Player, npc:Shopper3){
 		FlxObject.separate(player, npc);
+		player.setPosition(startPoint.x, startPoint.y);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	

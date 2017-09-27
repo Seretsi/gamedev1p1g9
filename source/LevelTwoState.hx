@@ -41,6 +41,7 @@ class LevelTwoState extends FlxState {
 	var _npc5:Shopper1 = new Shopper1(600, 275);
 	var npc5path = new FlxPath();
 	var path5Points:Array<FlxPoint> = [new FlxPoint(600, 275), new FlxPoint(600, 50)];
+	var startPoint:FlxPoint = new FlxPoint(655, 225);
 
 	override public function create():Void {
 		cam.setTarget(player);
@@ -127,6 +128,8 @@ class LevelTwoState extends FlxState {
 	}
 	
 	private function onNPC1Collision(player:Player, npc:Shopper1){
+		FlxObject.separate(player, npc);
+		player.setPosition(startPoint.x, startPoint.y);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
@@ -134,6 +137,8 @@ class LevelTwoState extends FlxState {
 	}
 	
 	private function onNPC2Collision(player:Player, npc:Shopper2){
+		FlxObject.separate(player, npc);
+		player.setPosition(startPoint.x, startPoint.y);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
@@ -141,6 +146,8 @@ class LevelTwoState extends FlxState {
 	}
 	
 	private function onNPC3Collision(player:Player, npc:Shopper3){
+		FlxObject.separate(player, npc);
+		player.setPosition(startPoint.x, startPoint.y);
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);
@@ -152,6 +159,5 @@ class LevelTwoState extends FlxState {
 		FlxG.camera.shake(0.01, 0.1);
 		FlxG.camera.flash(0xFFFF0000, duration); //flash the screen a red colour
 		//other colours include, black - 0xFF000000, white - 0xFFFFFFF
-
 	}
 }

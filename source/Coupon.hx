@@ -15,6 +15,7 @@ class Coupon extends FlxSprite
 		setGraphicSize(70, 0);
 		scoreValue = value;
 		//collectSoundName = "kaboom";
+		updateHitbox();
 	}
 	
 	public function getValue():Int	{
