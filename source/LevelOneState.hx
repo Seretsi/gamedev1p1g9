@@ -20,21 +20,23 @@ class LevelOneState extends FlxState {
 		cam.setTarget(player);
 		FlxG.camera = cam;
 		super.create();
-		bgColor = FlxColor.WHITE;
-		ui = new UIFunctions(10);
+		bgColor = FlxColor.BLACK;
+		var levelTime:Float = 10;
+		ui = new UIFunctions(10, 1);
 		
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
 		_bg.setGraphicSize(800);
 		_bg.screenCenter();
 		add(_bg);
-
 		_map = new FlxOgmoLoader("assets/images/levelOneCollisions.oel");
 		_mWalls = _map.loadTilemap("assets/art-refined/lv1.png", 100, 100, "walls");
 		//_mWalls.loadMapFromGraphic("assets/art-refined/lv1.png", false, 100, null, /*TileGraphic:FlxTilemapGraphicAsset*/null,
 										 //100, 100, flixel.tile.FlxBaseTilemap.FlxTilemapAutoTiling.AUTO, 0, 1, 1);
 		_mWalls.setTileProperties(1, FlxObject.NONE);
 		/*_mWalls.follow();
+
 		*/
+
 		_mWalls.setTileProperties(2, FlxObject.ANY);
 		add(player);
 		add(_mWalls);
@@ -50,12 +52,20 @@ class LevelOneState extends FlxState {
 		ui.updateUI(elapsed);
 		/*if (CRASH) {
 			ui.setInteractText(1);
-			ui.setMonologueText(1, 1);
+			ui.setMonologueText(1);
 		}
 		if (COUPON)
 		{
 			ui.setInteractText(2);
-			ui.setMonologueText(2, 1);
+			ui.setMonologueText(2);
+		}
+		if(LEVEL END) {
+			ui.getEndResults();
+			add(ui.getEndHeaderScoreItem());
+			add(ui.getEndMoneyScoreItem());
+			add(ui.getEndCoupScoreItem());
+			add(ui.getEndTimeScoreItem());
+			add(ui.getEndTotalScoreItem());
 		}
 		*/
 	}

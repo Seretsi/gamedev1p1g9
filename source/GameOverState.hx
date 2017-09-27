@@ -41,7 +41,6 @@ class GameOverState extends FlxState
 		_restartKeyButton.x = 400;
 		_restartKeyButton.y = 325;
 
-		//TODO: Beautify background a little
 		add(_gameOverTxt);
 		add(_exitKeyButton);
 		add(_restartKeyButton);

@@ -8,8 +8,9 @@ class LevelThreeState extends FlxState {
 	
 	override public function create():Void {
 		super.create();
-		bgColor = FlxColor.WHITE;
-		ui = new UIFunctions(10);
+		bgColor = FlxColor.BLACK;
+		var levelTime:Float = 10;
+		ui = new UIFunctions(10, 1);
 		add(ui.getMonologueItem());
 		add(ui.getInteractItem());
 		add(ui.getCouponsItem());
