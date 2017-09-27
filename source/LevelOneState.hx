@@ -70,9 +70,7 @@ class LevelOneState extends FlxState {
 		add(_coupon2);
 		add(_coupon3);
 		_npc1.path = npc1path.add(450, 325).add(450, 175).add(450, 325).start(50, FlxPath.YOYO);
-		for (i in 1...29){npc1path.add(450, 325).add(450, 175).add(450, 325).start(50, FlxPath.YOYO); }
 		_npc2.path = npc2path.add(200, 460).add(600, 460).add(200, 460).start(50, FlxPath.YOYO);
-		for(i in 1...29){npc2path.add(200, 460).add(600, 460).add(200, 460).start(50, FlxPath.YOYO);}	
 		hitboxes = new FlxGroup();
 		hitboxes.add(new LevelHitbox(220, 0, 800 - 220, 110));
 		hitboxes.add(new LevelHitbox(186, 209, 319 - 186, 318 - 835));

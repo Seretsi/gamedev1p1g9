@@ -29,18 +29,15 @@ class LevelThreeState extends FlxState {
 	var _coupon3:Coupon = new Coupon(50, 455);
 	var _coupon4:Coupon = new Coupon(5, 5);
 	var _coupon5:Coupon = new Coupon(205, 50);
-	var _npc1:Shopper1 = new Shopper1(450, 325);
+	var _npc1:Shopper1 = new Shopper1(655, 250);
 	var npc1path = new FlxPath();
-	var path1Points:Array<FlxPoint> = [new FlxPoint(655, 325), new FlxPoint(655, 175)];
-	var _npc2:Shopper2 = new Shopper2(575, 460);
+	var path1Points:Array<FlxPoint> = [new FlxPoint(655, 250), new FlxPoint(655, 175)];
+	var _npc2:Shopper2 = new Shopper2(525, 460);
 	var npc2path = new FlxPath();
-	var path2Points:Array<FlxPoint> = [new FlxPoint(575, 460), new FlxPoint(575, 300)];
+	var path2Points:Array<FlxPoint> = [new FlxPoint(525, 460), new FlxPoint(525, 300)];
 	var _npc3:Shopper3 = new Shopper3(200, 175);
 	var npc3path = new FlxPath();
-	var path3Points:Array<FlxPoint> = [new FlxPoint(200, 175), new FlxPoint(575, 175)];
-	var _npc4:Shopper3 = new Shopper3(125, 375);
-	var npc4path = new FlxPath();
-	var path4Points:Array<FlxPoint> = [new FlxPoint(125, 375), new FlxPoint(380, 375)];
+	var path3Points:Array<FlxPoint> = [new FlxPoint(150, 275), new FlxPoint(500, 275)];
 	var startPoint:FlxPoint = new FlxPoint(655, 400);
 
 
@@ -92,16 +89,10 @@ class LevelThreeState extends FlxState {
 		add(_npc1);
 		add(_npc2);
 		add(_npc3);
-		add(_npc4);
 		
-		_npc1.path = npc1path.add(655, 325).add(655, 175).add(655, 325).start(50, FlxPath.YOYO);
-		for (i in 1...29){npc1path.add(655, 325).add(655, 175).add(655, 325).start(50, FlxPath.YOYO); }
-		_npc2.path = npc2path.add(575, 460).add(575, 300).add(575, 460).start(50, FlxPath.YOYO);
-		for (i in 1...29){npc2path.add(575, 460).add(575, 300).add(575, 460).start(50, FlxPath.YOYO); }
-		_npc3.path = npc3path.add(200, 175).add(575, 175).add(200, 175).start(50, FlxPath.YOYO);
-		for (i in 1...29){npc3path.add(200, 175).add(575, 175).add(200, 175).start(50, FlxPath.YOYO); }
-		_npc4.path = npc3path.add(125, 375).add(380, 375).add(125, 375).start(50, FlxPath.YOYO);
-		for (i in 1...29){npc3path.add(125, 375).add(380, 375).add(125, 375).start(50, FlxPath.YOYO); }
+		_npc1.path = npc1path.add(655, 250).add(655, 175).add(655, 250).start(50, FlxPath.YOYO);
+		_npc2.path = npc2path.add(525, 460).add(525, 300).add(525, 460).start(50, FlxPath.YOYO);
+		_npc3.path = npc3path.add(150, 275).add(500, 275).add(150, 275).start(50, FlxPath.YOYO);
 	}
 
 	override public function update(elapsed:Float):Void {
@@ -131,7 +122,6 @@ class LevelThreeState extends FlxState {
 		FlxG.collide(player, _npc1, onNPC1Collision);
 		FlxG.collide(player, _npc2, onNPC2Collision);
 		FlxG.collide(player, _npc3, onNPC3Collision);
-		FlxG.collide(player, _npc4, onNPC3Collision);
 		FlxG.collide(player, hitboxes);
 	}
 
