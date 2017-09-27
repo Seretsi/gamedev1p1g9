@@ -26,7 +26,7 @@ class GameOverState extends FlxState
 	{
 		super.create();
 		_cam.gameOver();
-		_gameOverTxt = new FlxText(300, 300, 300, "You starved to death and died. Game Over!");
+		_gameOverTxt = new FlxText(290, 300, 300, "You starved to death and died. Game Over!");
 		_exitKeyButton  = new FlxButton(10, 10, "EXIT", returnToSplashScreen);
 		_exitKeyButton.x = 300;
 		_exitKeyButton.y = 325;
