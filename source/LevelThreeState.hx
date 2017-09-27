@@ -48,7 +48,7 @@ class LevelThreeState extends FlxState {
 		//cam.setTarget(player);
 		//FlxG.camera = cam;
 		super.create();
-		bgColor = FlxColor.WHITE;
+		bgColor = FlxColor.BLACK;
 		ui = new UIFunctions(90, 3);
 		add(transition);
 		_bg.loadGraphic("assets/art-refined/lv3.png", true, 4000, 3000);
@@ -107,6 +107,21 @@ class LevelThreeState extends FlxState {
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 		ui.updateUI(elapsed);
+		
+		var x:Float, y:Float;
+		x = player.getPosition().x; 
+		y = player.getPosition().y;
+		if (x < 0) {
+			player.setPosition(0, y);
+		} else if (x > 800) {
+			player.setPosition(800, y);
+		}
+		if (y < 0) {
+			player.setPosition(x, 0);
+		} else if (y > 600) {
+			player.setPosition(x, 600);
+		}
+		
 		FlxG.overlap(player, _coupon1, onCoupCollision);
 		FlxG.overlap(player, _coupon2, onCoupCollision);
 		FlxG.overlap(player, _coupon3, onCoupCollision);

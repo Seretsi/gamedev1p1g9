@@ -42,7 +42,7 @@ class LevelOneState extends FlxState {
 		//cam.setTarget(player);
 		
 		super.create();
-		bgColor = FlxColor.WHITE;
+		bgColor = FlxColor.BLACK;
 		ui = new UIFunctions(90, 1);
 		add(transition);
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
@@ -86,6 +86,21 @@ class LevelOneState extends FlxState {
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 		ui.updateUI(elapsed);
+		
+		var x:Float, y:Float;
+		x = player.getPosition().x; 
+		y = player.getPosition().y;
+		if (x < 0) {
+			player.setPosition(0, y);
+		} else if (x > 800) {
+			player.setPosition(800, y);
+		}
+		if (y < 0) {
+			player.setPosition(x, 0);
+		} else if (y > 600) {
+			player.setPosition(x, 600);
+		}
+		
 		FlxG.collide(_mWalls, player, null);
 		//FlxG.overlap(_player, _coupon1, onCoupCollision);
 		FlxG.overlap(player, _coupon1, onCoupCollision);
@@ -121,7 +136,11 @@ class LevelOneState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
+<<<<<<< HEAD
 		collisionResponse();
+=======
+		cam.collisionResponse();
+>>>>>>> refs/remotes/origin/master
 	}
 	
 	private function onNPC2Collision(player:Player, npc:Shopper2){
