@@ -82,25 +82,14 @@ class LevelOneState extends FlxState {
 		super.update(elapsed);
 		ui.updateUI(elapsed);
 		FlxG.collide(_mWalls, player, null);
-		if player.
 		//FlxG.overlap(_player, _coupon1, onCoupCollision);
-
 		FlxG.overlap(player, _coupon1, onCoupCollision);
 		FlxG.overlap(player, _coupon2, onCoupCollision);
 		FlxG.overlap(player, _coupon3, onCoupCollision);
-<<<<<<< HEAD
-
-		/*if (CRASH) {
-			ui.setInteractText(1);
-			ui.setMonologueText(1, 1);
-		}
-		*/
-=======
 		FlxG.overlap(player, transition, onTransPlate);
-		FlxG.collide(player, _npc1, onNPC1Collision);
-		FlxG.collide(player, _npc2, onNPC3Collision);
+		FlxG.collide(_npc1,player,  onNPC1Collision);
+		FlxG.collide(_npc2, player,  onNPC3Collision);
 		FlxG.collide(player, hitboxes);
->>>>>>> c1ab66f966c05d370ab3829bc2f7077b9ba110ea
 	}
 
 	private function onCoupCollision(player:Player, coupon:Coupon){
@@ -131,11 +120,13 @@ class LevelOneState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
+		cam.collisionResponse();
 	}
 	
 	private function onNPC3Collision(player:Player, npc:Shopper3){
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
+		cam.collisionResponse();
 	}
 }

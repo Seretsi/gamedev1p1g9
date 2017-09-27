@@ -16,7 +16,7 @@ class LevelHitbox extends FlxSprite
 		x_pos = X;
 		y_pos = Y;
 		loadGraphic("assets/images/player.png");
-		alpha = 0;
+		alpha = 1;
 		setGraphicSize(W, H);
 		updateHitbox();
 	}
