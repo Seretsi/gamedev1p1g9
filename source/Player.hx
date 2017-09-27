@@ -42,7 +42,6 @@ import flixel.graphics.frames.FlxAtlasFrames;
 		animation.addByPrefix("r45", "r45", 15);
 		animation.addByPrefix("b45", "b45", 15);
 		setGraphicSize(0, 150);
-		//offset.set(0, frameHeight);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		drag.x = drag.y = 1600;
