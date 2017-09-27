@@ -29,11 +29,21 @@ class LevelOneState extends FlxState {
 			ui.setInteractText(1);
 			ui.setMonologueText(1);
 		}
-		if (el > 5 && el < 6)
+		else if (el > 5 && el < 6)
 		{
 			el += 2;
 			ui.setInteractText(2);
 			ui.setMonologueText(2);
+		}
+		else if (el > 20 && el < 30)
+		{
+			el += 50;
+			ui.getEndResults();
+			add(ui.getEndHeaderScoreItem());
+			add(ui.getEndMoneyScoreItem());
+			add(ui.getEndCoupScoreItem());
+			add(ui.getEndTimeScoreItem());
+			add(ui.getEndTotalScoreItem());
 		}
 	}
 }

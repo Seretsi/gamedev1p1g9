@@ -20,7 +20,7 @@ class CutsceneEndState extends FlxState {
 		textTimer.active = true;
 		textTimer.start(2);
 		textTimer.loops = 1;
-		displayText = "I was so successful at coupon collecting that I'm now a billionaire.";
+		displayText = "I don't know what's real anymore.";
 		textItem = new FlxText(0, 220, 640, displayText);
 		textColor = FlxColor.WHITE;
 		textItem.setFormat("Verdana", 16, textColor, "center");
@@ -60,19 +60,19 @@ class CutsceneEndState extends FlxState {
 			if(textTimer.elapsedTime > 1.5) {
 				textTimer.active = false;
 				textItem.alpha = 1;
-				textItem.text = " - Fin - ";
+				textItem.text = " - Coupon - ";
 			}
 		}
 		advance = FlxG.keys.anyPressed([SPACE]) || FlxG.mouse.justPressed;
 		if (advance == true) {
 			position++;
 			if (position == 1) {
-				displayText = "However, I now find myself sufferring from a coupon-related injury that is both mysterious and fatal.";
+				displayText = "I gaze upon my husband and see nothing but coupons.";
 				textTimer.active = true;
 				textTimer.start(3.5);
 			}
 			else if (position == 2) {
-				displayText = "Farewell cruel world.";
+				displayText = "I look and the mirror and see that I am coupons.";
 				textTimer.active = true;
 				textTimer.start(3.5);
 			}

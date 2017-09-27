@@ -24,6 +24,7 @@ class UIFunctions {
 	var advance:Bool;
 	var textColor:FlxColor;
 	var tempCoup:Coupon;
+	var endHeaderScoreItem:FlxText;
 	var endMoneyScoreItem:FlxText;
 	var endCoupScoreItem:FlxText;
 	var endTimeScoreItem:FlxText;
@@ -34,8 +35,10 @@ class UIFunctions {
 	var crashIt:Int;
 	var coupIt:Int;
 	var monoType:Int;
+	var lvl:Int;
 	
-	public function new(t, lvl) { //NOTE: I am assuming 800 x 600 pixellation //NOTE: t is for TIME
+	public function new(t, l) { //NOTE: I am assuming 800 x 600 pixellation //NOTE: t is for TIME
+		lvl = l;
 		monologueText = "My dog likes eating bones and stuff.";
 		monologueItem = new FlxText(0, 550, 800, monologueText);
 		textColor = FlxColor.WHITE;
@@ -45,10 +48,10 @@ class UIFunctions {
 		interactItem = new FlxText(15, 10, 800, interactText);
 		interactItem.setFormat("assets/fonts/seguibl.ttf", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		interactItem.alpha = 0;
-		couponsText = "[stuff about coupons]";
+		couponsText = "Coupons x 0";
 		couponsItem = new FlxText(400, 10, 800, couponsText);
 		couponsItem.setFormat("assets/fonts/seguibl.ttf", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		scoresText = "[stuff about score]";
+		scoresText = "Score: 0";
 		scoresItem = new FlxText(550, 10, 800, scoresText);
 		scoresItem.setFormat("assets/fonts/seguibl.ttf", 14, textColor, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timerText = "[stuff about time]";
@@ -59,14 +62,10 @@ class UIFunctions {
 		tempCoup = new Coupon();
 		crashIt = 0;
 		coupIt = 0;
-		initMono(lvl);
+		initMono();
 		monologueTimer = new FlxTimer();
 		interactTimer = new FlxTimer();
 		endScoreTimer = new FlxTimer();
-		endMoneyScoreItem = new FlxText(400, 10, 800, "");
-		endCoupScoreItem = new FlxText(400, 10, 800, "");
-		endTimeScoreItem = new FlxText(400, 10, 800, "");
-		endTotalScoreItem = new FlxText(400, 10, 800, "");
 	}
 	
 	public function updateUI(elapsed):Void {
@@ -80,8 +79,6 @@ class UIFunctions {
 		timer.updateTime(elapsed);
 		timerText = "TIME: " + timer.getTime();
 		timerItem.text = timerText;
-		if (timer.getTime() < 50)
-			setCoupons(tempCoup);
 		runMono();
 		runInteract();
 	}
@@ -166,10 +163,33 @@ class UIFunctions {
 		couponsItem.alpha = 0;
 		scoresItem.alpha = 0;
 		timerItem.alpha = 0;
-		endTimeScoreItem.text = timer.finalTime() * 5;
+		endHeaderScoreItem = new FlxText(0, 150, 800, "");
+		endHeaderScoreItem.setFormat("assets/fonts/seguibl.ttf", 16, textColor, "center");
+		endMoneyScoreItem = new FlxText(0, 200, 800, "");
+		endMoneyScoreItem.setFormat("assets/fonts/seguibl.ttf", 16, textColor, "center");
+		endCoupScoreItem = new FlxText(0, 250, 800, "");
+		endCoupScoreItem.setFormat("assets/fonts/seguibl.ttf", 16, textColor, "center");
+		endTimeScoreItem = new FlxText(0, 300, 800, "");
+		endTimeScoreItem.setFormat("assets/fonts/seguibl.ttf", 16, textColor, "center");
+		endTotalScoreItem = new FlxText(0, 350, 800, "");
+		endTotalScoreItem.setFormat("assets/fonts/seguibl.ttf", 16, textColor, "center");
+		endHeaderScoreItem.text = "LEVEL " + lvl + " SCORE";
+		var ms:Int = -200;
+		if (lvl == 2)
+			ms = -400;
+		else if (lvl == 3)
+			ms = -600;
+		endMoneyScoreItem.text = "Money Spent: " + ms + " points";
+		var ts:Int = timer.finalTime() * 5;
+		endTimeScoreItem.text = "Time Remaining: " + ts + " points";
+		var cs:Int = scores.getScore();
+		endCoupScoreItem.text = "Coupons Collected: " + cs + " points";
+		var total:Int = ms + ts + cs;
+		endTotalScoreItem.text = "Total Score: " + total + " points";
+	}
+	
+	public function updateEndResults(elapsed) {
 		
-		var endScore:String = " -  250 from money spent\n" + " + " + scores.getScore() + " from coupons" + "\n" + " + " ;
-		endItem = new FlxText(0, 200, 800, endScore);
 	}
 	
 	public function getMonologueItem():FlxText {
@@ -204,7 +224,7 @@ class UIFunctions {
 		return timerItem;
 	}
 	
-	private function initMono(lvl:Int) {
+	private function initMono() {
 		monoCrash = new Array();
 		monoCoup = new Array();
 		if (lvl == 1) {
@@ -228,7 +248,7 @@ class UIFunctions {
 			monoCrash.push("Why would anyone ever buy a pile of rocks?");
 			monoCrash.push("That guy reminds me of my now estranged husband of five years");
 			monoCrash.push("I hate mondays");
-			monoCrash.push("'Everyone' in this 'store' seems to be insane.");
+			monoCrash.push("'Everyone' in this 'store' seems to be 'insane'.");
 			monoCrash.push("From their perspective I'm the enemy");
 			monoCrash.push("Their cart was filled with grass... this place is weird");
 			monoCoup.push("100% off sunflower seeds. I guess that's what's for dinner");
@@ -255,5 +275,25 @@ class UIFunctions {
 			monoCoup.push("5000% off my hopes and dreams. Weird");
 			monoCoup.push("This one's just a five million dollar check");
 		}
+	}
+	
+	public function getEndHeaderScoreItem():FlxText {
+		return endHeaderScoreItem;
+	}
+	
+	public function getEndMoneyScoreItem():FlxText {
+		return endMoneyScoreItem;
+	}
+	
+	public function getEndCoupScoreItem():FlxText {
+		return endCoupScoreItem;
+	}
+	
+	public function getEndTimeScoreItem():FlxText {
+		return endTimeScoreItem;
+	}
+	
+	public function getEndTotalScoreItem():FlxText {
+		return endTotalScoreItem;
 	}
 }
