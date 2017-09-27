@@ -16,7 +16,7 @@ import flixel.FlxObject;
 	var atlas:FlxAtlasFrames;
 	
     public function new(?X:Float=0, ?Y:Float=0) {
-		atlas = FlxAtlasFrames.fromTexturePackerJson("assets/images/shopper2.png", "assets/data/shopper2.json");
+		atlas = FlxAtlasFrames.fromTexturePackerJson("assets/images/shopper3.png", "assets/data/shopper3.json");
 		frames = atlas;
 		animation.addByPrefix("left", "s3", 15);
 		setFacingFlip(FlxObject.LEFT, false, false);
@@ -24,6 +24,6 @@ import flixel.FlxObject;
     }
 	
 	override public function update(elapsed:Float):Void {
-		
+		super.update(elapsed);
 	}
  }

@@ -22,6 +22,6 @@ import flixel.FlxSprite;
     }
 	
 	override public function update(elapsed:Float):Void {
-		
+		super.update(elapsed);
 	}
  }
