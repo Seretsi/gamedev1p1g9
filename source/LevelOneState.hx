@@ -16,9 +16,12 @@ class LevelOneState extends FlxState {
 	var _mWalls:FlxTilemap;
 	var cam:Camera = new Camera();
 	var _bg = new FlxSprite( 1, 1);
-	private var numCoups:Int = 5;
+	private var numCoups:Int = 3;
 	private var coupsHad:Int = 0;
 	private var canLeave:Bool = false; 
+	var _coupon1:Coupon = new Coupon(300, 100);
+	var _coupon2:Coupon = new Coupon(650, 375);
+	var _coupon3:Coupon = new Coupon(350, 500);
 
 	override public function create():Void {
 		//cam.setTarget(player);
@@ -45,6 +48,10 @@ class LevelOneState extends FlxState {
 		add(ui.getCouponsItem());
 		add(ui.getScoresItem());
 		add(ui.getTimerItem());
+		
+		add(_coupon1);
+		add(_coupon2);
+		add(_coupon3);
 	}
 
 	override public function update(elapsed:Float):Void {
@@ -52,14 +59,14 @@ class LevelOneState extends FlxState {
 		ui.updateUI(elapsed);
 		FlxG.collide(_mWalls, player, null);
 		//FlxG.overlap(_player, _coupon1, onCoupCollision);
+
+		FlxG.overlap(player, _coupon1, onCoupCollision);
+		FlxG.overlap(player, _coupon2, onCoupCollision);
+		FlxG.overlap(player, _coupon3, onCoupCollision);
+
 		/*if (CRASH) {
 			ui.setInteractText(1);
 			ui.setMonologueText(1, 1);
-		}
-		if (COUPON)
-		{
-			ui.setInteractText(2);
-			ui.setMonologueText(2, 1);
 		}
 		*/
 	}
@@ -67,8 +74,11 @@ class LevelOneState extends FlxState {
 	private function onCoupCollision(player:Player, coupon:Coupon){
 		if (coupon.exists && player.exists){
 			//FlxG.sound.play(collectSoundName);
+			ui.setCoupons(coupon);
 			coupon.destroy();
 			coupsHad++;
+			ui.setInteractText(2);
+			ui.setMonologueText(2);
 			if (coupsHad >= numCoups){canLeave = true;}
 		}
 	}
