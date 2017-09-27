@@ -14,6 +14,7 @@ class LevelOneState extends FlxState {
 	var _mWalls:FlxTilemap;
 	var cam:Camera = new Camera();
 	var _bg = new FlxSprite( 1, 1); 
+	var temp:Bool;
 
 	override public function create():Void {
 		cam.setTarget(player);
@@ -22,11 +23,12 @@ class LevelOneState extends FlxState {
 		bgColor = FlxColor.BLACK;
 		var levelTime:Float = 10;
 		ui = new UIFunctions(10, 1);
+		temp = true;
 		
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
 		_bg.setGraphicSize(800);
 		_bg.screenCenter();
-		add(_bg);
+		//add(_bg);
 
 		//_map = new FlxOgmoLoader(AssetPaths.levelOneCollisions_oel);
 		//_mWalls = _map.loadTilemap(AssetPaths.tiles__png, 16, 16, "walls");
@@ -55,7 +57,7 @@ class LevelOneState extends FlxState {
 			ui.setInteractText(2);
 			ui.setMonologueText(2);
 		}
-		if(LEVEL END) {
+		if(LEVEL END) { //ONLY CALL ALL OF THESE ONCE!
 			ui.getEndResults();
 			add(ui.getEndHeaderScoreItem());
 			add(ui.getEndMoneyScoreItem());

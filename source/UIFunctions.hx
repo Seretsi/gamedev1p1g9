@@ -84,8 +84,17 @@ class UIFunctions {
 		runInteract();
 		if (endScoreTimer.active == true)
 		{
-			if
+			if (endScoreTimer.elapsedTime > 2 && endMoneyScoreItem.alpha == 0)
+				endMoneyScoreItem.alpha = 1;
+			if (endScoreTimer.elapsedTime > 4 && endCoupScoreItem.alpha == 0)
+				endCoupScoreItem.alpha = 1;
+			if (endScoreTimer.elapsedTime > 6 && endTimeScoreItem.alpha == 0)
+				endTimeScoreItem.alpha = 1;
+			if (endScoreTimer.elapsedTime > 8 && endTotalScoreItem.alpha == 0)
+				endTotalScoreItem.alpha = 1;
 		}
+		if (endScoreTimer.active == true && endScoreTimer.elapsedTime > 10)
+			endScoreTimer.active = false;
 	}
 	
 	public function setCoupons(c:Coupon):Void {

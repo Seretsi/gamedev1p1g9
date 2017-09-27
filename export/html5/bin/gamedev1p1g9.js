@@ -414,7 +414,7 @@ ApplicationMain.init = function() {
 	}
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "174", company : "HaxeFlixel", file : "gamedev1p1g9", fps : 60, name : "gamedev1p1g9", orientation : "", packageName : "com.example.myapp", version : "0.0.1", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : false, stencilBuffer : true, title : "gamedev1p1g9", vsync : true, width : 800, x : null, y : null}]};
+	ApplicationMain.config = { build : "179", company : "HaxeFlixel", file : "gamedev1p1g9", fps : 60, name : "gamedev1p1g9", orientation : "", packageName : "com.example.myapp", version : "0.0.1", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : false, stencilBuffer : true, title : "gamedev1p1g9", vsync : true, width : 800, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -10491,10 +10491,10 @@ LevelOneState.prototype = $extend(flixel_FlxState.prototype,{
 		this.set_bgColor(-16777216);
 		var levelTime = 10;
 		this.ui = new UIFunctions(10,1);
+		this.temp = true;
 		this._bg.loadGraphic("assets/art-refined/lv1.png",true,3200,2400);
 		this._bg.setGraphicSize(800);
 		this._bg.screenCenter();
-		this.add(this._bg);
 		this.add(this.player);
 		this.add(this.ui.getMonologueItem());
 		this.add(this.ui.getInteractItem());
@@ -10505,6 +10505,15 @@ LevelOneState.prototype = $extend(flixel_FlxState.prototype,{
 	,update: function(elapsed) {
 		flixel_FlxState.prototype.update.call(this,elapsed);
 		this.ui.updateUI(elapsed);
+		if(this.temp) {
+			this.temp = false;
+			this.ui.getEndResults();
+			this.add(this.ui.getEndHeaderScoreItem());
+			this.add(this.ui.getEndMoneyScoreItem());
+			this.add(this.ui.getEndCoupScoreItem());
+			this.add(this.ui.getEndTimeScoreItem());
+			this.add(this.ui.getEndTotalScoreItem());
+		}
 	}
 	,__class__: LevelOneState
 });
@@ -11973,6 +11982,7 @@ var UIFunctions = function(t,l) {
 	this.monologueTimer = new flixel_util_FlxTimer();
 	this.interactTimer = new flixel_util_FlxTimer();
 	this.endScoreTimer = new flixel_util_FlxTimer();
+	this.endScoreTimer.active = false;
 };
 $hxClasses["UIFunctions"] = UIFunctions;
 UIFunctions.__name__ = ["UIFunctions"];
@@ -11988,6 +11998,23 @@ UIFunctions.prototype = {
 		this.timerItem.set_text(this.timerText);
 		this.runMono();
 		this.runInteract();
+		if(this.endScoreTimer.active == true) {
+			if(this.endScoreTimer._timeCounter > 2 && this.endMoneyScoreItem.alpha == 0) {
+				this.endMoneyScoreItem.set_alpha(1);
+			}
+			if(this.endScoreTimer._timeCounter > 4 && this.endCoupScoreItem.alpha == 0) {
+				this.endCoupScoreItem.set_alpha(1);
+			}
+			if(this.endScoreTimer._timeCounter > 6 && this.endTimeScoreItem.alpha == 0) {
+				this.endTimeScoreItem.set_alpha(1);
+			}
+			if(this.endScoreTimer._timeCounter > 8 && this.endTotalScoreItem.alpha == 0) {
+				this.endTotalScoreItem.set_alpha(1);
+			}
+		}
+		if(this.endScoreTimer.active == true && this.endScoreTimer._timeCounter > 10) {
+			this.endScoreTimer.active = false;
+		}
 	}
 	,setCoupons: function(c) {
 		this.scores.collectCoupon(c);
@@ -12048,7 +12075,9 @@ UIFunctions.prototype = {
 	}
 	,getEndResults: function() {
 		this.monologueItem.set_alpha(0);
+		this.monologueTimer.active = false;
 		this.interactItem.set_alpha(0);
+		this.interactTimer.active = false;
 		this.couponsItem.set_alpha(0);
 		this.scoresItem.set_alpha(0);
 		this.timerItem.set_alpha(0);
@@ -12056,12 +12085,16 @@ UIFunctions.prototype = {
 		this.endHeaderScoreItem.setFormat("assets/fonts/seguibl.ttf",16,this.textColor,"center");
 		this.endMoneyScoreItem = new flixel_text_FlxText(0,200,800,"");
 		this.endMoneyScoreItem.setFormat("assets/fonts/seguibl.ttf",16,this.textColor,"center");
+		this.endMoneyScoreItem.set_alpha(0);
 		this.endCoupScoreItem = new flixel_text_FlxText(0,250,800,"");
 		this.endCoupScoreItem.setFormat("assets/fonts/seguibl.ttf",16,this.textColor,"center");
+		this.endCoupScoreItem.set_alpha(0);
 		this.endTimeScoreItem = new flixel_text_FlxText(0,300,800,"");
 		this.endTimeScoreItem.setFormat("assets/fonts/seguibl.ttf",16,this.textColor,"center");
+		this.endTimeScoreItem.set_alpha(0);
 		this.endTotalScoreItem = new flixel_text_FlxText(0,350,800,"");
 		this.endTotalScoreItem.setFormat("assets/fonts/seguibl.ttf",16,this.textColor,"center");
+		this.endTotalScoreItem.set_alpha(0);
 		this.endHeaderScoreItem.set_text("LEVEL " + this.lvl + " SCORE");
 		var ms = -200;
 		if(this.lvl == 2) {
@@ -12076,8 +12109,7 @@ UIFunctions.prototype = {
 		this.endCoupScoreItem.set_text("Coupons Collected: " + cs + " points");
 		var total = ms + ts + cs;
 		this.endTotalScoreItem.set_text("Total Score: " + total + " points");
-	}
-	,updateEndResults: function(elapsed) {
+		this.endScoreTimer.start(10.5);
 	}
 	,getMonologueItem: function() {
 		return this.monologueItem;
