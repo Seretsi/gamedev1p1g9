@@ -29,3 +29,4 @@ class Coupon extends FlxSprite
 		FlxG.sound.play(collectSoundName);
 		super.destroy();
 	}*/
+}
