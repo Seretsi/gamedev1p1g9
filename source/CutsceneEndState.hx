@@ -22,7 +22,7 @@ class CutsceneEndState extends FlxState {
 		textTimer.loops = 1;
 		displayText = "I don't know what's real anymore.";
 		textItem = new FlxText(0, 220, 640, displayText);
-		textColor = FlxColor.WHITE;
+		textColor = FlxColor.BLACK;
 		textItem.setFormat("Verdana", 16, textColor, "center");
 		add(textItem);
 		position = 0;

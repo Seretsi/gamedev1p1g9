@@ -22,7 +22,7 @@ class CutsceneTwoState extends FlxState {
 		textTimer.loops = 1;
 		displayText = "[insert store name] is selling things at a 100% discount...";
 		textItem = new FlxText(0, 220, 640, displayText);
-		textColor = FlxColor.WHITE;
+		textColor = FlxColor.BLACK;
 		textItem.setFormat("Verdana", 16, textColor, "center");
 		add(textItem);
 		position = 0;
