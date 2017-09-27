@@ -8,6 +8,8 @@ import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.FlxSprite;
 import flixel.FlxObject;
 import flixel.util.FlxCollision;
+import flixel.math.FlxPoint;
+import flixel.util.FlxPath;
 
 class LevelTwoState extends FlxState {
 	var ui:UIFunctions;
@@ -24,6 +26,21 @@ class LevelTwoState extends FlxState {
 	var _coupon2:Coupon = new Coupon(350, 500);
 	var _coupon3:Coupon = new Coupon(50, 470);
 	var _coupon4:Coupon = new Coupon(5, 25);
+	var _npc1:Shopper1 = new Shopper1(450, 325);
+	var npc1path = new FlxPath();
+	var path1Points:Array<FlxPoint> = [new FlxPoint(450, 325), new FlxPoint(450, 175)];
+	var _npc2:Shopper3 = new Shopper3(100, 560);
+	var npc2path = new FlxPath();
+	var path2Points:Array<FlxPoint> = [new FlxPoint(100, 460), new FlxPoint(600, 460)];
+	var _npc3:Shopper2 = new Shopper2(100, 360);
+	var npc3path = new FlxPath();
+	var path3Points:Array<FlxPoint> = [new FlxPoint(100, 360), new FlxPoint(100, 160)];
+	var _npc4:Shopper3 = new Shopper3(320, 240);
+	var npc4path = new FlxPath();
+	var path4Points:Array<FlxPoint> = [new FlxPoint(320, 240), new FlxPoint(460, 240)];
+	var _npc5:Shopper1 = new Shopper1(600, 275);
+	var npc5path = new FlxPath();
+	var path5Points:Array<FlxPoint> = [new FlxPoint(600, 275), new FlxPoint(600, 50)];
 
 	override public function create():Void {
 		cam.setTarget(player);
@@ -57,6 +74,17 @@ class LevelTwoState extends FlxState {
 		add(_coupon2);
 		add(_coupon3);
 		add(_coupon4);
+		
+		_npc1.path = npc1path.add(450, 325).add(450, 175).add(450, 325).start(50, FlxPath.FORWARD);
+		for (i in 1...29){npc1path.add(450, 325).add(450, 175).add(450, 325).start(50, FlxPath.FORWARD); }
+		_npc2.path = npc2path.add(100, 460).add(600, 460).add(100, 460).start(50, FlxPath.FORWARD);
+		for (i in 1...29){npc2path.add(100, 460).add(600, 460).add(100, 460).start(50, FlxPath.FORWARD); }
+		_npc3.path = npc3path.add(100, 360).add(100, 160).add(100, 360).start(50, FlxPath.FORWARD);
+		for (i in 1...29){npc3path.add(100, 360).add(100, 160).add(100, 360).start(50, FlxPath.FORWARD); }
+		_npc4.path = npc4path.add(320, 240).add(460, 240).add(320, 240).start(50, FlxPath.FORWARD);
+		for (i in 1...29){npc4path.add(320, 240).add(460, 240).add(320, 240).start(50, FlxPath.FORWARD); }
+		_npc5.path = npc5path.add(600, 275).add(600, 50).add(600, 275).start(50, FlxPath.FORWARD);
+		for(i in 1...29){npc4path.add(600, 275).add(600, 50).add(600, 275).start(50, FlxPath.FORWARD);}	
 	}
 
 	override public function update(elapsed:Float):Void {
@@ -67,11 +95,11 @@ class LevelTwoState extends FlxState {
 		FlxG.overlap(player, _coupon3, onCoupCollision);
 		FlxG.overlap(player, _coupon4, onCoupCollision);
 		FlxG.overlap(player, transition, onTransPlate);
-		/*if (CRASH) {
-			ui.setInteractText(1);
-			ui.setMonologueText(1, 1);
-		}
-		*/
+		FlxG.collide(player, _npc1, onNPC1Collision);
+		FlxG.collide(player, _npc2, onNPC3Collision);
+		FlxG.collide(player, _npc3, onNPC2Collision);
+		FlxG.collide(player, _npc4, onNPC3Collision);
+		FlxG.collide(player, _npc5, onNPC1Collision);
 	}
 
 	private function onCoupCollision(player:Player, coupon:Coupon){
@@ -90,5 +118,23 @@ class LevelTwoState extends FlxState {
 		if (canLeave){
 			transition.transition2();
 		}
+	}
+	
+	private function onNPC1Collision(player:Player, npc:Shopper1){
+		ui.reduceTimer();
+		ui.setInteractText(1);
+		ui.setMonologueText(1);	
+	}
+	
+	private function onNPC2Collision(player:Player, npc:Shopper2){
+		ui.reduceTimer();
+		ui.setInteractText(1);
+		ui.setMonologueText(1);	
+	}
+	
+	private function onNPC3Collision(player:Player, npc:Shopper3){
+		ui.reduceTimer();
+		ui.setInteractText(1);
+		ui.setMonologueText(1);	
 	}
 }

@@ -9,6 +9,8 @@ import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.FlxSprite;
 import flixel.FlxObject;
 import flixel.util.FlxCollision;
+import flixel.math.FlxPoint;
+import flixel.util.FlxPath;
 
 class LevelOneState extends FlxState {
 	var ui:UIFunctions;
@@ -25,6 +27,12 @@ class LevelOneState extends FlxState {
 	var _coupon1:Coupon = new Coupon(300, 100);
 	var _coupon2:Coupon = new Coupon(650, 375);
 	var _coupon3:Coupon = new Coupon(350, 500);
+	var _npc1:Shopper1 = new Shopper1(450, 325);
+	var npc1path = new FlxPath();
+	var path1Points:Array<FlxPoint> = [new FlxPoint(450, 325), new FlxPoint(450, 175)];
+	var _npc2:Shopper3 = new Shopper3(200, 460);
+	var npc2path = new FlxPath();
+	var path2Points:Array<FlxPoint> = [new FlxPoint(200, 460), new FlxPoint(600, 460)];
 
 	override public function create():Void {
 		cam.setTarget(player);
@@ -37,15 +45,9 @@ class LevelOneState extends FlxState {
 		_bg.setGraphicSize(800);
 		_bg.screenCenter();
 		add(_bg);
-		
-		//_map = new FlxOgmoLoader("assets/images/levelOneCollisions.oel");
-		//_mWalls = _map.loadTilemap("assets/art-refined/lv1.png", 100, 100, "walls");
-		//_mWalls.loadMapFromGraphic("assets/art-refined/lv1.png", false, 100, null, /*TileGraphic:FlxTilemapGraphicAsset*/null,
-										 //100, 100, flixel.tile.FlxBaseTilemap.FlxTilemapAutoTiling.AUTO, 0, 1, 1);
-		//_mWalls.setTileProperties(1, FlxObject.NONE);
-		/*_mWalls.follow();
-		*/
-		//_mWalls.setTileProperties(2, FlxObject.ANY);
+		add(_npc1);
+		_map = new FlxOgmoLoader("assets/images/levelOneCollisions.oel");
+		_mWalls = _map.loadTilemap("assets/art-refined/lv1.png", 100, 100, "walls");
 		add(player);
 		//add(_mWalls);
 		add(ui.getMonologueItem());
@@ -57,7 +59,10 @@ class LevelOneState extends FlxState {
 		add(_coupon1);
 		add(_coupon2);
 		add(_coupon3);
-		
+		_npc1.path = npc1path.add(450, 325).add(450, 175).add(450, 325).start(50, FlxPath.FORWARD);
+		for (i in 1...29){npc1path.add(450, 325).add(450, 175).add(450, 325).start(50, FlxPath.FORWARD); }
+		_npc2.path = npc2path.add(200, 460).add(600, 460).add(200, 460).start(50, FlxPath.FORWARD);
+		for(i in 1...29){npc2path.add(200, 460).add(600, 460).add(200, 460).start(50, FlxPath.FORWARD);}	
 		hitboxes = new FlxGroup();
 		hitboxes.add(new LevelHitbox(220, 0, 800 - 220, 110));
 		hitboxes.add(new LevelHitbox(186, 209, 319 - 186, 318 - 835));
@@ -75,12 +80,10 @@ class LevelOneState extends FlxState {
 		FlxG.overlap(player, _coupon2, onCoupCollision);
 		FlxG.overlap(player, _coupon3, onCoupCollision);
 		FlxG.overlap(player, transition, onTransPlate);
+<<<<<<< HEAD
+		FlxG.collide(player, _npc1, onNPC1Collision);
+		FlxG.collide(player, _npc2, onNPC3Collision);
 		FlxG.collide(player, hitboxes);
-		/*if (CRASH) {
-			ui.setInteractText(1);
-			ui.setMonologueText(1, 1);
-		}
-		*/
 	}
 
 	private function onCoupCollision(player:Player, coupon:Coupon){
@@ -99,5 +102,23 @@ class LevelOneState extends FlxState {
 		if (canLeave){
 			transition.transition1();
 		}
+	}
+	
+	private function onNPC1Collision(player:Player, npc:Shopper1){
+		ui.reduceTimer();
+		ui.setInteractText(1);
+		ui.setMonologueText(1);	
+	}
+	
+	private function onNPC2Collision(player:Player, npc:Shopper2){
+		ui.reduceTimer();
+		ui.setInteractText(1);
+		ui.setMonologueText(1);	
+	}
+	
+	private function onNPC3Collision(player:Player, npc:Shopper3){
+		ui.reduceTimer();
+		ui.setInteractText(1);
+		ui.setMonologueText(1);	
 	}
 }
