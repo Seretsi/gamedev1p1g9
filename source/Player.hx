@@ -49,9 +49,11 @@ import flixel.FlxObject;
 		cartLoop = FlxG.sound.load("assets/sounds/cartStartNew.wav", 1, true);
 //		cartStart = FlxG.sound.load("assets/sounds/cartStart.wav", 0.5, false, false, false, cartLoop.play());
 		drag.x = drag.y = 1600;
-    }
-	
-	override public function update(elapsed:Float):Void {
+		//setSize(8, 14);
+ 		//offset.set(4, 2);
+     }
+	 
+	 override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 		poll();
 		movement();

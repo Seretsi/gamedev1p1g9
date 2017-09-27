@@ -35,9 +35,13 @@ class LevelOneState extends FlxState {
 	var path2Points:Array<FlxPoint> = [new FlxPoint(200, 460), new FlxPoint(600, 460)];
 
 	override public function create():Void {
+<<<<<<< HEAD
+		//cam.setTarget(player);
+=======
 		FlxG.debugger.drawDebug = true;
 		
 		cam.setTarget(player);
+>>>>>>> 64748bbfe8c9b06648ac61200a1822cb9a3012ce
 		FlxG.camera = cam;
 		super.create();
 		bgColor = FlxColor.WHITE;
@@ -46,6 +50,11 @@ class LevelOneState extends FlxState {
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
 		_bg.setGraphicSize(800);
 		_bg.screenCenter();
+		//_mWalls.loadMapFromGraphic("assets/art-refined/lv1.png", false, 100, null, /*TileGraphic:FlxTilemapGraphicAsset*/null,
+										 //100, 100, flixel.tile.FlxBaseTilemap.FlxTilemapAutoTiling.AUTO, 0, 1, 1);
+		//_mWalls.setTileProperties(1, FlxObject.NONE);
+		//_mWalls.follow();
+		//_mWalls.setTileProperties(1, FlxObject.ANY);
 		add(_bg);
 		add(_npc1);
 		add(_npc2);
@@ -79,6 +88,8 @@ class LevelOneState extends FlxState {
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 		ui.updateUI(elapsed);
+		FlxG.collide(_mWalls, player, null);
+		//FlxG.overlap(_player, _coupon1, onCoupCollision);
 		FlxG.overlap(player, _coupon1, onCoupCollision);
 		FlxG.overlap(player, _coupon2, onCoupCollision);
 		FlxG.overlap(player, _coupon3, onCoupCollision);
@@ -118,6 +129,7 @@ class LevelOneState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
+		cam.collisionResponse();
 	}
 	
 	private function onNPC3Collision(player:Player, npc:Shopper3){
@@ -125,5 +137,6 @@ class LevelOneState extends FlxState {
 		ui.reduceTimer();
 		ui.setInteractText(1);
 		ui.setMonologueText(1);	
+		cam.collisionResponse();
 	}
 }
