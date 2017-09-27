@@ -62,6 +62,8 @@ class LevelOneState extends FlxState {
 		hitboxes.add(new LevelHitbox(220, 0, 800 - 220, 110));
 		hitboxes.add(new LevelHitbox(186, 209, 319 - 186, 318 - 835));
 		hitboxes.add(new LevelHitbox(586, 189, 718 - 586, 298 - 189));
+		hitboxes.add(new LevelHitbox(335, 389, 563 - 335, 500 - 389));
+		hitboxes.draw();
 		
 		add(hitboxes);
 	}
@@ -73,6 +75,7 @@ class LevelOneState extends FlxState {
 		FlxG.overlap(player, _coupon2, onCoupCollision);
 		FlxG.overlap(player, _coupon3, onCoupCollision);
 		FlxG.overlap(player, transition, onTransPlate);
+		FlxG.collide(player, hitboxes);
 		/*if (CRASH) {
 			ui.setInteractText(1);
 			ui.setMonologueText(1, 1);

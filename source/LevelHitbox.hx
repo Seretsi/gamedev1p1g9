@@ -8,8 +8,19 @@ import flixel.FlxG;
 
 class LevelHitbox extends FlxSprite
 {	
+	var x_pos:Float;
+	var y_pos:Float;
+	
 	public function new(X:Float=0, Y:Float=0, W:Int=0, H:Int=0)	{
-		super(X,Y);
+		super(X, Y);
+		x_pos = X;
+		y_pos = Y;
+		loadGraphic("assets/images/player.png");
 		setGraphicSize(W, H);
+		updateHitbox();
+	}
+	
+	override public function update(elapsed:Float):Void {
+		setPosition(x_pos, y_pos);
 	}
 }
