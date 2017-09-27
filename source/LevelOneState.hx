@@ -86,6 +86,20 @@ class LevelOneState extends FlxState {
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 		ui.updateUI(elapsed);
+		
+		x = player.getPosition().x; 
+		y = player.getPosition().y;
+		if (x < 0) {
+			player.setPosition(0, y);
+		} else if (x > 800) {
+			player.setPosition(800, y);
+		}
+		if (y < 0) {
+			player.setPosition(x, 0);
+		} else if (y > 600) {
+			player.setPosition(x, 600);
+		}
+		
 		FlxG.collide(_mWalls, player, null);
 		//FlxG.overlap(_player, _coupon1, onCoupCollision);
 		FlxG.overlap(player, _coupon1, onCoupCollision);

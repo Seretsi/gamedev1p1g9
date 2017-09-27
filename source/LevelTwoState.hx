@@ -98,7 +98,8 @@ class LevelTwoState extends FlxState {
 		super.update(elapsed);
 		ui.updateUI(elapsed);
 		var x:Int, y:Int;
-		x = player.getPosition().x, y = player.getPosition().y;
+		x = player.getPosition().x; 
+		y = player.getPosition().y;
 		if (x < 0) {
 			player.setPosition(0, y);
 		} else if (x > 800) {
