@@ -6,10 +6,11 @@ import flixel.FlxG;
 import flixel.tile.FlxTilemap;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.FlxSprite;
+import flixel.FlxObject;
 
 class LevelOneState extends FlxState {
 	var ui:UIFunctions;
-	var player:Player = new Player();
+	var player:Player = new Player(100,175);
 	var _map:FlxOgmoLoader;
 	var _mWalls:FlxTilemap;
 	var cam:Camera = new Camera();
@@ -27,14 +28,16 @@ class LevelOneState extends FlxState {
 		_bg.screenCenter();
 		add(_bg);
 
-		_map = new FlxOgmoLoader(AssetPaths.levelOneCollisions_oel);
-		_mWalls = _map.loadTilemap(AssetPaths.tiles__png, 16, 16, "walls");
-		_mWalls.follow();
-		/*	_mWalls.setTileProperties(1, FlxObject.NONE);
-		_mWalls.setTileProperties(2, FlxObject.ANY);
-		add(_mWalls);
+		_map = new FlxOgmoLoader("assets/images/levelOneCollisions.oel");
+		_mWalls = _map.loadTilemap("assets/art-refined/lv1.png", 100, 100, "walls");
+		//_mWalls.loadMapFromGraphic("assets/art-refined/lv1.png", false, 100, null, /*TileGraphic:FlxTilemapGraphicAsset*/null,
+										 //100, 100, flixel.tile.FlxBaseTilemap.FlxTilemapAutoTiling.AUTO, 0, 1, 1);
+		_mWalls.setTileProperties(1, FlxObject.NONE);
+		/*_mWalls.follow();
 		*/
+		_mWalls.setTileProperties(2, FlxObject.ANY);
 		add(player);
+		add(_mWalls);
 		add(ui.getMonologueItem());
 		add(ui.getInteractItem());
 		add(ui.getCouponsItem());
