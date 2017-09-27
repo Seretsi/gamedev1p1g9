@@ -15,7 +15,7 @@ class SplashScreenState extends FlxState{
 	override public function create():Void{
 		super.create();
 		_title.loadGraphic("assets/images/SplashScreenGameTitle_Placeholder.png", true, 248, 150);
-		_anyKeyButton  = new FlxButton(10, 10, "press any key", clickPlay);
+		_anyKeyButton  = new FlxButton(10, 10, "Click to play", clickPlay);
 		_anyKeyButton.x = 360;
 		_anyKeyButton.y = 325;
 
@@ -29,6 +29,6 @@ class SplashScreenState extends FlxState{
 	}
 
 	function clickPlay():Void{
-		FlxG.switchState(new GameOverState(1)); // we may not have a menu and just jump straight into the game
+		FlxG.switchState(new CutsceneOneState()); // we may not have a menu and just jump straight into the game
 	}
 }

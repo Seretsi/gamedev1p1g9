@@ -11,15 +11,16 @@ import flixel.util.FlxCollision;
 
 class LevelTwoState extends FlxState {
 	var ui:UIFunctions;
-	var player:Player = new Player(655,225);
+	var player:Player = new Player(655, 225);
+	var transition:TransparentPlate = new TransparentPlate(675, 495);
 	var _map:FlxOgmoLoader;
 	var _mWalls:FlxTilemap;
 	var cam:Camera = new Camera();
 	var _bg = new FlxSprite( 1, 1);
-	private var numCoups:Int = 3;
+	private var numCoups:Int = 4;
 	private var coupsHad:Int = 0;
 	private var canLeave:Bool = false; 
-	var _coupon1:Coupon = new Coupon(300, 105);
+	var _coupon1:Coupon = new Coupon(300, 305);
 	var _coupon2:Coupon = new Coupon(350, 500);
 	var _coupon3:Coupon = new Coupon(50, 470);
 	var _coupon4:Coupon = new Coupon(5, 25);
@@ -30,7 +31,7 @@ class LevelTwoState extends FlxState {
 		super.create();
 		bgColor = FlxColor.WHITE;
 		ui = new UIFunctions(10, 1);
-		
+		add(transition);
 		_bg.loadGraphic("assets/art-refined/lv2.png", true, 3200, 2400);
 		_bg.setGraphicSize(800);
 		_bg.screenCenter();
@@ -65,6 +66,7 @@ class LevelTwoState extends FlxState {
 		FlxG.overlap(player, _coupon2, onCoupCollision);
 		FlxG.overlap(player, _coupon3, onCoupCollision);
 		FlxG.overlap(player, _coupon4, onCoupCollision);
+		FlxG.overlap(player, transition, onTransPlate);
 		/*if (CRASH) {
 			ui.setInteractText(1);
 			ui.setMonologueText(1, 1);
@@ -81,6 +83,12 @@ class LevelTwoState extends FlxState {
 			ui.setInteractText(2);
 			ui.setMonologueText(2);
 			if (coupsHad >= numCoups){canLeave = true;}
+		}
+	}
+	
+	private function onTransPlate(player:Player, transition:TransparentPlate){
+		if (canLeave){
+			transition.transition2();
 		}
 	}
 }

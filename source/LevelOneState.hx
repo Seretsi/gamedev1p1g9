@@ -12,6 +12,7 @@ import flixel.util.FlxCollision;
 class LevelOneState extends FlxState {
 	var ui:UIFunctions;
 	var player:Player = new Player(100,175);
+	var transition:TransparentPlate = new TransparentPlate(100, 100);
 	var _map:FlxOgmoLoader;
 	var _mWalls:FlxTilemap;
 	var cam:Camera = new Camera();
@@ -29,7 +30,7 @@ class LevelOneState extends FlxState {
 		super.create();
 		bgColor = FlxColor.WHITE;
 		ui = new UIFunctions(10, 1);
-		
+		add(transition);
 		_bg.loadGraphic("assets/art-refined/lv1.png", true, 3200, 2400);
 		_bg.setGraphicSize(800);
 		_bg.screenCenter();
@@ -62,6 +63,7 @@ class LevelOneState extends FlxState {
 		FlxG.overlap(player, _coupon1, onCoupCollision);
 		FlxG.overlap(player, _coupon2, onCoupCollision);
 		FlxG.overlap(player, _coupon3, onCoupCollision);
+		FlxG.overlap(player, transition, onTransPlate);
 		/*if (CRASH) {
 			ui.setInteractText(1);
 			ui.setMonologueText(1, 1);
@@ -78,6 +80,12 @@ class LevelOneState extends FlxState {
 			ui.setInteractText(2);
 			ui.setMonologueText(2);
 			if (coupsHad >= numCoups){canLeave = true;}
+		}
+	}
+	
+	private function onTransPlate(player:Player, transition:TransparentPlate){
+		if (canLeave){
+			transition.transition1();
 		}
 	}
 }

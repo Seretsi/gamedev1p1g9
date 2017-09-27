@@ -11,19 +11,20 @@ import flixel.util.FlxCollision;
 
 class LevelThreeState extends FlxState {
 	var ui:UIFunctions;
-	var player:Player = new Player(655,450);
+	var player:Player = new Player(655, 400);
+	var transition:TransparentPlate = new TransparentPlate(655, 450);
 	var _map:FlxOgmoLoader;
 	var _mWalls:FlxTilemap;
 	var cam:Camera = new Camera();
 	var _bg = new FlxSprite( 1, 1);
-	private var numCoups:Int = 3;
+	private var numCoups:Int = 5;
 	private var coupsHad:Int = 0;
 	private var canLeave:Bool = false; 
-	var _coupon1:Coupon = new Coupon(300, 105);
-	var _coupon2:Coupon = new Coupon(350, 500);
-	var _coupon3:Coupon = new Coupon(50, 450);
-	var _coupon4:Coupon = new Coupon(5, 25);
-	var _coupon5:Coupon = new Coupon(205, 25);
+	var _coupon1:Coupon = new Coupon(500, 105);
+	var _coupon2:Coupon = new Coupon(350, 425);
+	var _coupon3:Coupon = new Coupon(50, 455);
+	var _coupon4:Coupon = new Coupon(5, 5);
+	var _coupon5:Coupon = new Coupon(205, 50);
 
 	override public function create():Void {
 		cam.setTarget(player);
@@ -31,8 +32,8 @@ class LevelThreeState extends FlxState {
 		super.create();
 		bgColor = FlxColor.WHITE;
 		ui = new UIFunctions(10, 1);
-		
-		_bg.loadGraphic("assets/art-refined/lv3.png", true, 3200, 2400);
+		add(transition);
+		_bg.loadGraphic("assets/art-refined/lv3.png", true, 4000, 3000);
 		_bg.setGraphicSize(800);
 		_bg.screenCenter();
 		add(_bg);
@@ -68,6 +69,7 @@ class LevelThreeState extends FlxState {
 		FlxG.overlap(player, _coupon3, onCoupCollision);
 		FlxG.overlap(player, _coupon4, onCoupCollision);
 		FlxG.overlap(player, _coupon5, onCoupCollision);
+		FlxG.overlap(player, transition, onTransPlate);
 		/*if (CRASH) {
 			ui.setInteractText(1);
 			ui.setMonologueText(1, 1);
@@ -84,6 +86,12 @@ class LevelThreeState extends FlxState {
 			ui.setInteractText(2);
 			ui.setMonologueText(2);
 			if (coupsHad >= numCoups){canLeave = true;}
+		}
+	}
+	
+	private function onTransPlate(player:Player, transition:TransparentPlate){
+		if (canLeave){
+			transition.transition3();
 		}
 	}
 }
