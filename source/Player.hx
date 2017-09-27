@@ -1,6 +1,5 @@
 package;
 
-
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.system.FlxSound;
 import flixel.FlxG;
@@ -9,7 +8,7 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.math.FlxPoint;
 import flixel.FlxObject;
  
-import flixel.util.FlxColor;
+//import flixel.util.FlxColor;
 
 /**
  * @author Becca Sheridan & Etienne Morakotkarn
@@ -47,7 +46,7 @@ import flixel.util.FlxColor;
 		setGraphicSize(0, 150);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
-		cartLoop = FlxG.sound.load("assets/sounds/cartStartNew.wav", 0.5, true);
+		cartLoop = FlxG.sound.load("sounds/crash1.wav");
 //		cartStart = FlxG.sound.load("assets/sounds/cartStart.wav", 0.5, false, false, false, cartLoop.play());
 		drag.x = drag.y = 1600;
     }
@@ -57,7 +56,6 @@ import flixel.util.FlxColor;
 		poll();
 		movement();
 		animate();
-		cartLoop.play();
 		updateHitbox();
 	}
 	
@@ -69,6 +67,11 @@ import flixel.util.FlxColor;
 	}
 	
 	function movement():Void {
+		
+		if (_up) {
+			cartLoop.play();
+		}
+		
 		if (_up && _down){
 			_up = _down = false;
 		}
