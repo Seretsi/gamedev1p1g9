@@ -43,9 +43,9 @@ class GameTimer
 	}
 	
 	// For the end of the level - stops the timer and returns the player's ending time for the sake of score calculation.
-	public function finalTime():Int
+	public function finalTime():Float
 	{
 		_stop = true;
-		return Std.int(time);
+		return time;
 	}
 }

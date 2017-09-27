@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OgmoVersion>2.1.0.6</OgmoVersion>
+  <Name>Gamedev1p</Name>
+  <BackgroundColor A="255" R="255" G="255" B="255" />
+  <GridColor A="255" R="255" G="255" B="255" />
+  <LevelDefaultSize>
+    <Width>640</Width>
+    <Height>480</Height>
+  </LevelDefaultSize>
+  <LevelMinimumSize>
+    <Width>3200</Width>
+    <Height>2400</Height>
+  </LevelMinimumSize>
+  <LevelMaximumSize>
+    <Width>3200</Width>
+    <Height>2400</Height>
+  </LevelMaximumSize>
+  <Filename>C:\Users\sklek\Documents\Rennselaer Polytechnic Institute\Academics\Game Development\gamedev1p1g9\assets\images\New Project.oep</Filename>
+  <AngleMode>Radians</AngleMode>
+  <CameraEnabled>false</CameraEnabled>
+  <CameraSize>
+    <Width>640</Width>
+    <Height>480</Height>
+  </CameraSize>
+  <ExportCameraPosition>false</ExportCameraPosition>
+  <LevelValueDefinitions />
+  <LayerDefinitions>
+    <LayerDefinition xsi:type="GridLayerDefinition">
+      <Name>walls</Name>
+      <Grid>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
+      <Color A="255" R="0" G="0" B="0" />
+      <ExportMode>Bitstring</ExportMode>
+    </LayerDefinition>
+  </LayerDefinitions>
+  <Tilesets />
+  <EntityDefinitions />
+</project>
